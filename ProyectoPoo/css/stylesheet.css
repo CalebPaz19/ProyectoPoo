@@ -1,36 +1,71 @@
 @import url('https://fonts.googleapis.com/css2?family=WDXL+Lubrifont+SC&display=swap');
 
-header div{
-    width: 5rem;
-    padding: 20px;
-}
 
 body{
-    background: linear-gradient(to right, red, blue);
+   /* background: linear-gradient(to right, red, blue);*/
+    background: radial-gradient(circle 90rem at center,rgb(42, 238, 17),rgb(22, 22, 213),rgb(71, 1, 71));
     margin: 10px;
 }
 
+header{
+    display: flex;
+    flex-direction: row;
+    font-size: 1rem;
+    height: 10vh;
+}
+header div{
+    width: 3rem;
+    padding: 20px;
+}
+
 main{
+    height: 80vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+section{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    align-items: center;
     font-family: "WDXL Lubrifont SC", sans-serif;
+    height: 40vh;
+    width: 40vw;
+    background-color: rgba(208, 202, 202, 0.297);
+    border: 2px solid transparent; /* Necesario para que funcione con box-shadow */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(0, 0, 0, 0.2);
+
+    
 }
-main h1{
-    font-size: 4rem;
+   
+section h1{
+    font-size: 3rem;
     margin: 5px;
 }
-main h2{
-    font-size: 2rem;
+section h2{
+    font-size: 1.5rem;
     margin: 5px;
     margin-bottom: 3rem;
 
 }
 
+section div{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
+    
+    gap: 20px;
+}
+
 button{
-    font-size: 2rem;
-    padding: 15px;
+    width: 12vw;
+    height: 7vh;
+    font-size: 1rem;
+    padding: 2px 1px;
     color: aliceblue;
     background-color: black;
     border-radius: 20px ;
@@ -38,5 +73,9 @@ button{
 }
 
 button:hover{
-    background-color: rgb(12, 182, 182);
+    background: linear-gradient( black,rgb(22, 138, 138));
+}
+
+footer{
+    height: 10vh;
 }
