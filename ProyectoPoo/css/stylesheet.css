@@ -8,9 +8,12 @@ body{
 }
 
 header{
+    background-color: rgb(0, 0, 0);
+    color: white;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     font-size: 1rem;
     height: 10vh;
 }
@@ -18,10 +21,20 @@ header{
 header section{
     display: flex;
     flex-direction: row;
+    padding: 1em;
 }
+
 #logo{
     width: 3rem;
     padding: 20px;
+    color: rgb(255, 255, 255);
+}
+
+h1{
+    display: flex;
+    align-items: center;
+    align-items: center;
+    
 }
 
 main{
