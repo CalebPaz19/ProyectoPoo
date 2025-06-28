@@ -4,7 +4,7 @@
 body{
    /* background: linear-gradient(to right, red, blue);*/
     background: radial-gradient(circle 90rem at center,rgb(42, 238, 17),rgb(22, 22, 213),rgb(71, 1, 71));
-    margin: 10px;
+    margin: 0;
 }
 
 header{
@@ -12,6 +12,7 @@ header{
     flex-direction: row;
     font-size: 1rem;
     height: 10vh;
+   
 }
 header div{
     width: 3rem;
@@ -20,10 +21,11 @@ header div{
 
 main{
     height: 80vh;
-    width: 100vw;
+    width: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 2rem;
 }
 section{
     display: flex;
@@ -32,23 +34,27 @@ section{
     justify-content: center;
     align-items: center;
     font-family: "WDXL Lubrifont SC", sans-serif;
-    height: 40vh;
-    width: 40vw;
+    width:auto;
+    height: auto;
+    padding: 2rem;
+    font-size: 1em;
     background-color: rgba(208, 202, 202, 0.297);
-    border: 2px solid transparent; /* Necesario para que funcione con box-shadow */
+    border: 2px solid transparent; 
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(0, 0, 0, 0.2);
 
     
 }
    
-section h1{
-    font-size: 3rem;
+section h2{
+    text-align: center;
+    font-size: 3em;
     margin: 5px;
 }
-section h2{
-    font-size: 1.5rem;
-    margin: 5px;
-    margin-bottom: 3rem;
+section h3{
+    text-align: center;
+    font-size: 1.5em;
+    margin: 0.1em;
+    margin-bottom: 1.5em;
 
 }
 
@@ -56,24 +62,24 @@ section div{
     display: flex;
     justify-content: center;
     flex-direction: row;
-    justify-content: space-between;
-    
     gap: 20px;
 }
 
 button{
-    width: 12vw;
-    height: 7vh;
-    font-size: 1rem;
+    width: 6em;
+    height: 2.5em;
+    font-size: 1em;
     padding: 2px 1px;
     color: aliceblue;
-    background-color: black;
+    background-color: rgb(10, 10, 10);
     border-radius: 20px ;
     cursor: pointer;
+    border: 2px solid transparent; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
 button:hover{
-    background: linear-gradient( black,rgb(22, 138, 138));
+    background: linear-gradient( rgb(0, 0, 0),rgb(22, 138, 138));
 }
 
 footer{
