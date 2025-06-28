@@ -7,7 +7,7 @@ body{
     margin: 0;
 }
 
-header{
+nav{
     background-color: rgb(0, 0, 0);
     color: white;
     display: flex;
@@ -18,7 +18,7 @@ header{
     height: 10vh;
 }
 
-header section{
+nav div{
     display: flex;
     flex-direction: row;
     padding: 1em;
@@ -27,7 +27,6 @@ header section{
 #logo{
     width: 3rem;
     padding: 20px;
-    color: rgb(255, 255, 255);
 }
 
 h1{
