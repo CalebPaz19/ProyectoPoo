@@ -122,6 +122,7 @@ button:hover{
 #mainsection2{
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 #mainsection2 img{
    object-fit: cover;
