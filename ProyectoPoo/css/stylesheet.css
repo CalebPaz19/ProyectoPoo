@@ -2,8 +2,9 @@
 
 
 body{
-   /* background: linear-gradient(to right, red, blue);*/
-    background: radial-gradient(circle 90rem at center,rgb(42, 238, 17),rgb(22, 22, 213),rgb(71, 1, 71));
+    /*background: radial-gradient(circle 90rem at center,rgb(42, 238, 17),rgb(22, 22, 213),rgb(71, 1, 71));
+    /*background: radial-gradient(circle 20rem at center,rgb(89, 91, 89),rgb(50, 49, 49),rgb(0, 0, 0));*/
+    background: rgb(189, 205, 255);
     margin: 0;
 }
 
@@ -34,8 +35,6 @@ nav div{
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    height: 100%;
-    width: 25%;
     padding: 3px 5px;
 }
 
@@ -60,11 +59,10 @@ h1{
 
 main{
     margin-top: 10vh;
-    height: 80vh;
-    width: 100%;
     display: flex;
     flex-direction: row;
-    gap: 10rem;
+    justify-content: space-around;
+    align-items: center;
     padding: 2rem;
 }
 #mainSection1{
@@ -74,25 +72,22 @@ main{
     justify-content: center;
     align-items: center;
     font-family: "WDXL Lubrifont SC", sans-serif;
-    width:auto;
-    height: auto;
-    padding: 2rem;
-    font-size: 1em;
-    background-color: rgba(208, 202, 202, 0.297);
+    backdrop-filter: blur(5px);
+    /*background-color: rgba(208, 202, 202, 0.448);
     border: 2px solid transparent; 
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(0, 0, 0, 0.2);*/
 
     
 }
    
+#mainSection1 h1{
+    text-align: center;
+    font-size: 3.1em;
+}
 #mainSection1 h2{
     text-align: center;
-    font-size: 3em;
-    margin: 5px;
-}
-#mainSection1 h3{
-    text-align: center;
     font-size: 1.5em;
+    color: rgb(81, 77, 77);
     margin: 0.1em;
     margin-bottom: 1.5em;
 
@@ -108,7 +103,7 @@ main{
 button{
     width: 6em;
     height: 2.5em;
-    font-size: 1em;
+    font-size: 1.2em;
     padding: 2px 1px;
     color: aliceblue;
     background-color: rgb(10, 10, 10);
@@ -119,12 +114,19 @@ button{
 }
 
 button:hover{
-    background: linear-gradient( rgb(0, 0, 0),rgb(22, 138, 138));
+    /*background: linear-gradient( rgb(86, 72, 72),rgb(22, 138, 138));*/
+    background-color: rgb(17, 162, 36);
+    border-color: cyan;
 }
 
 #mainsection2{
-    border: 5px solid black;
-    width: 40%;
+    display: flex;
+    justify-content: center;
+}
+#mainsection2 img{
+   object-fit: cover;
+}
+img{
 }
 footer{
     height: 10vh;
