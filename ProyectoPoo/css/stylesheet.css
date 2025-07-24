@@ -199,6 +199,11 @@ main{
     border: solid black;
 }
 
+.altura-textarea{
+    height: 100%;
+    width: 100%;
+}
+
 footer{
     height: 6vh;
 }
