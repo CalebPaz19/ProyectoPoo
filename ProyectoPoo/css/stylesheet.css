@@ -1,44 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=WDXL+Lubrifont+SC&display=swap');
 
-
+html, body {
+  overflow-x: hidden;
+}
 body{
     /*background: radial-gradient(circle 90rem at center,rgb(42, 238, 17),rgb(22, 22, 213),rgb(71, 1, 71));
     /*background: radial-gradient(circle 20rem at center,rgb(89, 91, 89),rgb(50, 49, 49),rgb(0, 0, 0));*/
-    background: rgb(189, 205, 255);
+    background-color: #bcccfe;
     margin: 0;
-}
-
-header{
-    width: 100%;
-    
 
 }
+
 nav{
     position: fixed;
     top: 0;
     left: 0;
     background-color: rgb(0, 0, 0);
     color: white;
+    height: 8vh;
+    margin-top: initial;
+    width: 100%;
+    padding: 0.1rem 0.4rem;
+}
+.Landingpage-nav{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     font-size: 1rem;
-    height: 10vh;
-    margin-top: initial;
     width: 100%;
-    padding: 0.1rem 0.4rem;
+    height: 100%;
+
 }
 
-nav div{
+.Landingpage-nav-div{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding: 2rem 2rem;
+    padding: 1rem 2rem;
 }
 
-ul{
+.Landingpage-nav ul{
     display: flex;
     justify-content: start;
     align-items: center;
@@ -46,39 +49,63 @@ ul{
     gap: 3rem;
     cursor: pointer;
     font-size: 1.5rem;
-    padding: 0px 30px 0px 0px;
+    margin: 0;
 }
 
-ul li:hover{
+.Landingpage-nav ul li:hover{
     color: cyan;
     text-decoration: underline;
 
 }
 
+.Landingpage-nav button{
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 14px;
+    padding: 0.6rem;
+}
 
-h1{
+#icono-nube{
+    color: black;
+    font-size: 1.5rem !important;
+    padding-left: 0;
+}
+
+.Landingpage-nav-div i{
+    color: rgb(255, 255, 255);
+    font-size: 2.5rem !important;
+    padding: 0 2rem;
+}
+
+
+#Landing-section1 h1{
     display: flex;
     align-items: center;
     align-items: center;
     
 }
 
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
 main{
-    margin-top: 10vh;
+    background-color: #bcccfe;
+}
+#Landing-page{
+    margin-top: 8vh;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
     padding: 2rem;
 }
-#mainSection1{
+#Landing-section1{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     align-items: center;
     font-family: "WDXL Lubrifont SC", sans-serif;
-    backdrop-filter: blur(5px);
+    /*backdrop-filter: blur(5px);
     /*background-color: rgba(208, 202, 202, 0.448);
     border: 2px solid transparent; 
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(0, 0, 0, 0.2);*/
@@ -86,11 +113,11 @@ main{
     
 }
    
-#mainSection1 h1{
+#Landing-section1 h1{
     text-align: center;
     font-size: 3.1em;
 }
-#mainSection1 h2{
+#Landing-section1 h2{
     text-align: center;
     font-size: 1.5em;
     color: rgb(81, 77, 77);
@@ -99,14 +126,14 @@ main{
 
 }
 
-#mainSection1 div{
+#Landing-section1 div{
     display: flex;
     justify-content: center;
     flex-direction: row;
     gap: 20px;
 }
 
-button{
+#btn-tryIt{
     width: 6em;
     height: 2.5em;
     font-size: 1.2em;
@@ -119,21 +146,59 @@ button{
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
-button:hover{
+#btn-tryIt:hover{
     /*background: linear-gradient( rgb(86, 72, 72),rgb(22, 138, 138));*/
     background-color: rgb(95, 108, 222);
     border-color: cyan;
 }
 
-#mainsection2{
+#Landing-section2{
     display: flex;
     justify-content: center;
     align-items: center;
 }
-#mainsection2 img{
+#Landing-section2 img{
    object-fit: cover;
 }
 
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+#editor-codigo{
+    margin-top: 8vh;
+}
+
+#contenedor-editores{
+    margin-bottom: 24px;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.altura-editores{
+    height: 50vh;
+}
+
+.altura-editores div span{
+    background-color: white;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: black;
+    padding: 0.3rem 2rem;
+    border-left: solid;
+    border-top: solid;
+    border-right: solid;
+    border-bottom: solid white;
+}
+#resultado-codigo{
+    height: 50vh;
+    width: 100%;
+    background-color: white;
+}
+.contenedor-codigo{
+    height: 94%;
+    background-color: white;
+    border: solid black;
+}
+
 footer{
-    height: 10vh;
+    height: 6vh;
 }

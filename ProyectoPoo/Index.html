@@ -10,52 +10,120 @@
     <meta name="name" content="">
     <title>Landing Page</title>
     <link rel="stylesheet" href="css/stylesheet.css">
+    <script src="https://kit.fontawesome.com/e4c6f70817.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
-
         <nav>
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="310" height="48" viewBox="0 0 260 48" fill="none">
+            <!--<section id="Landing-nav" class="Landingpage-nav">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="310" height="48" viewBox="0 0 260 48" fill="none">
 
-                    <!-- ♦ Icono azul con brackets -->
-                    <polygon points="24,0 48,24 24,48 0,24" fill="#007BFF"/>
-                    <path d="M18 12 L10 24 L18 36" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
-                    <path d="M30 12 L38 24 L30 36" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
+                        
+                        <polygon points="24,0 48,24 24,48 0,24" fill="#007BFF"/>
+                        <path d="M18 12 L10 24 L18 36" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
+                        <path d="M30 12 L38 24 L30 36" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
 
-                    <!-- Texto de marca -->
-                    <text x="64" y="32" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="600">
-                    <tspan fill="#FFFFFF">Quick</tspan>
-                    <tspan fill="#FFFFFF" dx="4">Code</tspan>
-                    <tspan fill="#007BFF" dx="4">Maker</tspan>
-                    </text>
-                </svg>
-            </div>
-            <div>
-                <ul>
-                    <li>Log in</li>
-                    <li>Sing up</li>
-                    <li>About</li>
-                    <li>Contact</li>
-                </ul>
-            </div>
+                        
+                        <text x="64" y="32" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="600">
+                        <tspan fill="#FFFFFF">Quick</tspan>
+                        <tspan fill="#FFFFFF" dx="4">Code</tspan>
+                        <tspan fill="#007BFF" dx="4">Maker</tspan>
+                        </text>
+                    </svg>
+                </div>
+                <div>
+                    <ul>
+                        <li>Log in</li>
+                        <li>Sing up</li>
+                        <li>About</li>
+                        <li>Contact</li>
+                    </ul>
+                </div>
+            </section> -->
+
+            <section id="editor-nav" class="Landingpage-nav">
+                <div class="Landingpage-nav-div">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="410" height="48" viewBox="0 0 260 48" fill="none">
+
+                        
+                        <polygon points="24,0 48,24 24,48 0,24" fill="#007BFF"/>
+                        <path d="M18 12 L10 24 L18 36" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
+                        <path d="M30 12 L38 24 L30 36" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
+
+                                                <text x="64" y="32" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="600">
+                        <tspan fill="#FFFFFF">Nombre</tspan>
+                        <tspan fill="#FFFFFF" dx="4">del</tspan>
+                        <tspan fill="#007BFF" dx="4">Proyecto</tspan>
+                        </text>
+                    </svg>
+                </div>
+                <div class="Landingpage-nav-div">
+                    <ul>
+                        <li><Button><i id="icono-nube" class=" fa-chisel fa-regular fa-cloud"></i>Guardar</Button></li>
+                        <li><i class="fa-solid fa-bars"></i></li>
+                    </ul>
+                </div>
+            </section>
         </nav>
     </header>
 
     <main>
-        <section id="mainSection1">
-            <h1>Crea codigo HTML, CSS, <br>y JavaScript</h1>
-            <h2>Genera y personaliza tu codigo web facil y rapido</h2>
-            
-            <div>
-                <button>
-                    Try it
-                </button>
-            </div>    
 
-        </section>
-        <section id="mainsection2">
-        <img src="images/Imagen_landpage.gif" alt="Imagen">
+        <!--<section id="Landing-page">
+            <section id="Landing-section1">
+                <h1>Crea codigo HTML, CSS, <br>y JavaScript</h1>
+                <h2>Genera y personaliza tu codigo web facil y rapido</h2>
+                    <div>
+                        <button id="btn-tryIt">
+                            Try it
+                        </button>
+                    </div>    
+            </section>
+            <section id="Landing-section2">
+                <img src="images/Imagen_landpage.gif" alt="Imagen">
+            </section>
+        </section>-->
+
+        <section id="editor-codigo">
+                <div id="contenedor-editores"  class="row">
+                    <div class="col">
+                        <section id="html" class="altura-editores">
+                            <div>
+                                <span>HTML</span>
+                            </div>
+                            <div class="contenedor-codigo">
+
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col">
+                        <section id="css" class="altura-editores">
+                            <div>
+                                <span>CSS</span>
+                            </div>
+                            <div class="contenedor-codigo">
+
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col">
+                        <section id="javascript" class="altura-editores">
+                            <div>
+                                <span>JAVASCRIPT</span>
+                            </div>
+                            <div class="contenedor-codigo">
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <div>
+                    <iframe id="resultado-codigo" src="" frameborder="0"></iframe>
+                </div>
+        
         </section>
         
     </main>
