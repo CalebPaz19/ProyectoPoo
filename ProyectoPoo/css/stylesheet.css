@@ -8,8 +8,20 @@ body{
     /*background: radial-gradient(circle 20rem at center,rgb(89, 91, 89),rgb(50, 49, 49),rgb(0, 0, 0));*/
     background-color: #bcccfe;
     margin: 0;
+    font-family: "WDXL Lubrifont SC", sans-serif;
 
 }
+
+main{
+    background-color: #bcccfe;
+
+}
+
+footer{
+    height: 6vh;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////////////////*/
 
 nav{
     position: fixed;
@@ -87,9 +99,6 @@ nav{
 
 /*///////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-main{
-    background-color: #bcccfe;
-}
 #Landing-page{
     margin-top: 8vh;
     display: flex;
@@ -164,7 +173,7 @@ main{
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 #editor-codigo{
-    margin-top: 8vh;
+    margin-top: 8.5vh;
 }
 
 #contenedor-editores{
@@ -199,11 +208,75 @@ main{
     border: solid black;
 }
 
-.altura-textarea{
+.editor-texto{
     height: 100%;
     width: 100%;
+    padding: 1rem;
+    /*cursor: pointer;*/
+    overflow-y: auto; /* muestra scroll vertical si se excede */
+    overflow-x: auto; /* opcional, para scroll horizontal */
+    box-sizing: border-box; /* muy importante para evitar desborde */
 }
 
-footer{
-    height: 6vh;
+/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
+.modal-content{
+    width: 25vw !important;
+    font-family: "WDXL Lubrifont SC", sans-serif ;
+}
+
+.modal-body, .modal-header{
+    background-color: #2c2c55;
+    color: #bcccfe;
+    border: 0 !important;
+    padding: 2rem 1rem !important;
+}
+
+.modal-header{
+    display: flex;
+    justify-content: center;
+    padding: 2rem 1rem 0rem 1rem !important;
+}
+
+.formulario-iniciarSesion{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.formulario-iniciarSesion label{
+    margin-left: 10px;
+}
+
+.formulario-iniciarSesion input{
+    background-color: #bcccfe;
+    border-radius: 15px;
+    border: solid;
+    margin-top: 3px;
+    padding: 0.5rem;
+    cursor: text;
+}
+
+.formulario-iniciarSesion input:focus{
+    border-color: cyan;
+    outline: none;
+}
+
+.formulario-iniciarSesion div{
+    display: flex;
+    justify-content: center;
+}
+
+.formulario-iniciarSesion button{
+    border-radius: 10px;
+    width: 70%;
+    margin-top: 10px;
+    align-items: center;
+    background-color: black;
+    color: white;
+}
+
+.formulario-iniciarSesion button:hover{
+    /*background: linear-gradient( rgb(86, 72, 72),rgb(22, 138, 138));*/
+    background-color: rgb(95, 108, 222);
+    border-color: cyan;
 }

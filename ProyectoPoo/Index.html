@@ -9,15 +9,30 @@
     <meta name="name" content="">
     <meta name="name" content="">
     <title>Landing Page</title>
+    
     <link rel="stylesheet" href="css/stylesheet.css">
+   
     <script src="https://kit.fontawesome.com/e4c6f70817.js" crossorigin="anonymous"></script>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.12/lib/codemirror.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.12/theme/monokai.css"/>
+
+    <script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.12/lib/codemirror.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.12/mode/xml/xml.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.12/mode/javascript/javascript.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.12/mode/css/css.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.12/mode/htmlmixed/htmlmixed.js"></script>
+
+    
+
 </head>
 <body>
     <header>
         <nav>
-            <!--<section id="Landing-nav" class="Landingpage-nav">
+            <section id="Landing-nav" class="Landingpage-nav">
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="310" height="48" viewBox="0 0 260 48" fill="none">
 
@@ -36,15 +51,15 @@
                 </div>
                 <div>
                     <ul>
-                        <li>Log in</li>
-                        <li>Sing up</li>
+                        <li data-bs-toggle="modal" data-bs-target="#login-modal">Log in</li>
+                        <li data-bs-toggle="modal" data-bs-target="#singUp-modal">Sing up</li>
                         <li>About</li>
                         <li>Contact</li>
                     </ul>
                 </div>
-            </section> -->
+            </section>
 
-            <section id="editor-nav" class="Landingpage-nav">
+            <!--<section id="editor-nav" class="Landingpage-nav">
                 <div class="Landingpage-nav-div">
                     <svg xmlns="http://www.w3.org/2000/svg" width="410" height="48" viewBox="0 0 260 48" fill="none">
 
@@ -66,70 +81,97 @@
                         <li><i class="fa-solid fa-bars"></i></li>
                     </ul>
                 </div>
-            </section>
+            </section>-->
         </nav>
     </header>
 
     <main>
 
-        <!--<section id="Landing-page">
+        <section id="Landing-page">
             <section id="Landing-section1">
                 <h1>Crea codigo HTML, CSS, <br>y JavaScript</h1>
                 <h2>Genera y personaliza tu codigo web facil y rapido</h2>
                     <div>
-                        <button id="btn-tryIt">
+                        <button id="btn-tryIt" onclick="renderizarEditorCodigo()">
                             Try it
                         </button>
                     </div>    
             </section>
             <section id="Landing-section2">
-                <img src="images/Imagen_landpage.gif" alt="Imagen">
+                <img src="img/Imagen_landpage.gif" alt="Imagen">
             </section>
-        </section>-->
-
-        <section id="editor-codigo">
-                <div id="contenedor-editores"  class="row">
-                    <div class="col">
-                        <section id="html" class="altura-editores">
-                            <div>
-                                <span>HTML</span>
-                            </div>
-                            <div class="contenedor-codigo">
-                                <textarea class="altura-textarea"name="" id=""></textarea>
-                            </div>
-                        </section>
-                    </div>
-                    <div class="col">
-                        <section id="css" class="altura-editores">
-                            <div>
-                                <span>CSS</span>
-                            </div>
-                            <div class="contenedor-codigo">
-                                <textarea class="altura-textarea"name="" id=""></textarea>
-                            </div>
-                        </section>
-                    </div>
-                    <div class="col">
-                        <section id="javascript" class="altura-editores">
-                            <div>
-                                <span>JAVASCRIPT</span>
-                            </div>
-                            <div class="contenedor-codigo">
-                                <textarea class="altura-textarea"name="" id=""></textarea>
-                            </div>
-                        </section>
-                    </div>
-                </div>
-                <div>
-                    <iframe id="resultado-codigo" src="" frameborder="0"></iframe>
-                </div>
-        
         </section>
-        
+
+        <div id="login-modal" class="modal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="210" height="38" viewBox="0 0 260 48" fill="none">
+                            
+                            <polygon points="24,0 48,24 24,48 0,24" fill="#007BFF"/>
+                            <path d="M18 12 L10 24 L18 36" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
+                            <path d="M30 12 L38 24 L30 36" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
+
+                        
+                            <text x="64" y="32" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="600">
+                                <tspan fill="#FFFFFF">Iniciar</tspan>
+                                <tspan fill="#FFFFFF" dx="4">Sesion</tspan>
+                            </text>
+                        </svg>
+                    </div>
+                    <div class="modal-body">
+                        <form class="formulario-iniciarSesion" action="">
+                            <label for="">Email</label>
+                            <input type="text">
+
+                            <label for="">Contraseña</label>
+                            <input type="text">
+                            <div><button type="button">Iniciar sesion</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="singUp-modal" class="modal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="210" height="38" viewBox="0 0 260 48" fill="none">
+                            
+                            <polygon points="24,0 48,24 24,48 0,24" fill="#007BFF"/>
+                            <path d="M18 12 L10 24 L18 36" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
+                            <path d="M30 12 L38 24 L30 36" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
+
+                        
+                            <text x="64" y="32" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="600">
+                                <tspan fill="#FFFFFF">Registrate</tspan>
+                                <tspan fill="#FFFFFF" dx=""></tspan>
+                            </text>
+                        </svg>
+                    </div>
+                    <div class="modal-body">
+                        <form class="formulario-iniciarSesion" action="">
+                            <label for="">Nombre</label>
+                            <input type="text">
+
+                            <label for="">Email</label>
+                            <input type="text">
+
+                            <label for="">Contraseña</label>
+                            <input type="text">
+                            <div><button type="button">Iniciar sesion</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <footer>
 
     </footer>
+    <script src="js/controlador.js"></script>
 </body>
 </html>
