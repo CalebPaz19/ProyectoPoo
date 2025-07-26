@@ -280,3 +280,28 @@ nav{
     background-color: rgb(95, 108, 222);
     border-color: cyan;
 }
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+#barra-lateral{
+    border: solid black;
+    width: 12vw;
+    height: 100vh;
+    background-color: black;
+}
+
+#barra-lateral header{
+    height: 20%;
+}
+
+aside svg{
+    width: 100%;
+}
+
+.contenedores-aside{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: black;
+    color: white;
+}

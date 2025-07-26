@@ -84,3 +84,17 @@ const renderizarEditorCodigo = () => {
 
         </section>`;
 };
+
+loginModal.style.display = 'none';
+singUpModal.style.display = 'none';
+
+const abrirModal = (boton) => {
+  const loginModal = new bootstrap.Modal(document.getElementById('login-modal'));
+  const singUpModal = new bootstrap.Modal(document.getElementById('singUp-modal'));
+
+  if (boton.id === 'boton-formulario-iniciarSesion') {
+    loginModal.show();
+  } else if (boton.id === 'boton-formulario-registro') {
+    singUpModal.show();
+  }
+};

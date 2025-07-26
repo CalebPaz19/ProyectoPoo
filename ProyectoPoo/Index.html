@@ -31,7 +31,7 @@
 </head>
 <body>
     <header>
-        <nav>
+        <nav style="display: none;">
             <section id="Landing-nav" class="Landingpage-nav">
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="310" height="48" viewBox="0 0 260 48" fill="none">
@@ -51,8 +51,8 @@
                 </div>
                 <div>
                     <ul>
-                        <li data-bs-toggle="modal" data-bs-target="#login-modal">Log in</li>
-                        <li data-bs-toggle="modal" data-bs-target="#singUp-modal">Sing up</li>
+                        <li id="boton-formulario-iniciarSesion" onclick="abrirModal(this)">Log in</li>
+                        <li id="boton-formulario-registro" onclick="abrirModal(this)">Sing up</li>
                         <li>About</li>
                         <li>Contact</li>
                     </ul>
@@ -85,9 +85,10 @@
         </nav>
     </header>
 
+    
     <main>
 
-        <section id="Landing-page">
+        <section style="display: none;" id="Landing-page">
             <section id="Landing-section1">
                 <h1>Crea codigo HTML, CSS, <br>y JavaScript</h1>
                 <h2>Genera y personaliza tu codigo web facil y rapido</h2>
@@ -166,6 +167,49 @@
                 </div>
             </div>
         </div>
+
+        <div  id="barra-lateral">
+        <header>
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="180" height="48" viewBox="0 0 260 48" fill="none">
+
+                    
+                    <polygon points="24,0 48,24 24,48 0,24" fill="#007BFF"/>
+                    <path d="M18 12 L10 24 L18 36" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
+                    <path d="M30 12 L38 24 L30 36" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
+
+                    
+                    <text x="64" y="32" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="600">
+                    <tspan fill="#FFFFFF">Quick</tspan>
+                    <tspan fill="#FFFFFF" dx="4">Code</tspan>
+                    <tspan fill="#007BFF" dx="4">Maker</tspan>
+                    </text>
+                </svg>
+            </div>
+        </header>
+        <main>
+            <div class="contenedores-aside">
+                <div>Logo</div>
+                <div>Perfil</div>
+            </div>
+            <div class="contenedores-aside">
+                <div>Logo</div>
+                <div>Cuenta</div>
+            </div>
+            <div class="contenedores-aside">
+                <div>Logo</div>
+                <div>Proyectos</div>
+            </div>
+            <div class="contenedores-aside">
+                <div>Logo</div>
+                <div>Planes</div>
+            </div>
+            <div class="contenedores-aside">
+                <div>Logo</div>
+                <div>Cuenta</div>
+            </div>
+        </main>
+    </div>
 
     </main>
 
