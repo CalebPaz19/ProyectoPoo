@@ -38,10 +38,22 @@ const renderizarEditorCodigo = () => {
                     </svg>
                 </div>
                 <div class="Landingpage-nav-div">
-                    <ul>
-                        <li><Button><i id="icono-nube" class=" fa-chisel fa-regular fa-cloud"></i>Guardar</Button></li>
-                        <li><i class="fa-solid fa-bars"></i></li>
-                    </ul>
+                    <div class="seccion-derecha-navegacion">
+                        <button>
+                            <i class="fa-chisel fa-regular fa-cloud"></i>
+                            <div>Guardar</div>
+                        </button>
+                        <div class="btn-group">
+                            <button type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-bars"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li onclick="mostrarPerfil()"><a class="dropdown-item" href="#">Perfil</a></li>
+                                <li onclick="mostrarPreferencias()"><a class="dropdown-item" href="#">Ajustes</a></li>
+                                <li onclick="mostrarLandingPage()"><a class="dropdown-item" href="#">Cerrar sesion</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </section>`;
   document.querySelector("main").innerHTML = 
@@ -85,8 +97,8 @@ const renderizarEditorCodigo = () => {
         </section>`;
 };
 
-loginModal.style.display = 'none';
-singUpModal.style.display = 'none';
+// loginModal.style.display = 'none';
+// singUpModal.style.display = 'none';
 
 const abrirModal = (boton) => {
   const loginModal = new bootstrap.Modal(document.getElementById('login-modal'));
@@ -98,3 +110,61 @@ const abrirModal = (boton) => {
     singUpModal.show();
   }
 };
+
+const mostrarPantallaProyectos= () => {
+  
+  const loginModalEl = document.getElementById('login-modal');
+  const signUpModalEl = document.getElementById('singUp-modal');
+
+  const loginModal = bootstrap.Modal.getInstance(loginModalEl);
+  const signUpModal = bootstrap.Modal.getInstance(signUpModalEl);
+
+  if (loginModal) loginModal.hide();
+  if (signUpModal) signUpModal.hide();
+  
+  document.getElementById('pantall-principal').style.display = "none";
+  document.getElementById('pantalla-administrativa').style.display = "block";
+  document.getElementById('seccion-proyectos').style.display = "block";
+  document.getElementById('seccion-perfil').style.display = "none";
+  document.getElementById('seccion-cuanta').style.display = "none";
+  document.getElementById('seccion-preferencias').style.display = "none";
+  
+}
+
+const mostrarPerfil= () => {
+  document.getElementById('seccion-proyectos').style.display = "none";
+  document.getElementById('seccion-perfil').style.display = "block";
+  document.getElementById('seccion-cuanta').style.display = "none";
+  document.getElementById('seccion-preferencias').style.display = "none";
+}
+
+const mostrarCuenta= () => {
+  document.getElementById('seccion-proyectos').style.display = "none";
+  document.getElementById('seccion-perfil').style.display = "none";
+  document.getElementById('seccion-cuanta').style.display = "block";
+  document.getElementById('seccion-preferencias').style.display = "none";
+}
+
+const mostrarPreferencias= () => {
+  document.getElementById('seccion-proyectos').style.display = "none";
+  document.getElementById('seccion-perfil').style.display = "none";
+  document.getElementById('seccion-cuanta').style.display = "none";
+  document.getElementById('seccion-preferencias').style.display = "block";
+}
+
+// const mostrarPlanes= () => {
+//   document.getElementById('seccion-proyectos').style.display = "none";
+//   document.getElementById('seccion-perfil').style.display = "none";
+//   document.getElementById('seccion-cuanta').style.display = "block";
+//   document.getElementById('seccion-preferencias').style.display = "none";
+// }
+
+const mostrarLandingPage= () => {
+  document.getElementById('pantall-principal').style.display = "block";
+  document.getElementById('pantalla-administrativa').style.display = "none";
+  document.getElementById('seccion-proyectos').style.display = "none";
+  document.getElementById('seccion-perfil').style.display = "none";
+  document.getElementById('seccion-cuanta').style.display = "none";
+  document.getElementById('seccion-preferencias').style.display = "block";
+}
+
