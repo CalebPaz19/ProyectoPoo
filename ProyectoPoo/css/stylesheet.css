@@ -47,13 +47,12 @@ nav{
 
 .Landingpage-nav-div{
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
     padding: 1rem 2rem;
 }
 
-.Landingpage-nav ul{
+#ul-landigPage{
     display: flex;
     justify-content: start;
     align-items: center;

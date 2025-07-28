@@ -34,7 +34,7 @@
     <section id="pantall-principal" style="display: 0">
         <header>
             <nav>
-                <section id="Landing-nav" class="Landingpage-nav">
+                <section id="Landing-nav" class="Landingpage-nav" style="display: 0;">
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="310" height="48" viewBox="0 0 260 48" fill="none">
 
@@ -52,7 +52,7 @@
                         </svg>
                     </div>
                     <div>
-                        <ul>
+                        <ul id="ul-landigPage">
                             <li id="boton-formulario-iniciarSesion" onclick="abrirModal(this)">Log in</li>
                             <li id="boton-formulario-registro" onclick="abrirModal(this)">Sing up</li>
                             <li>About</li>
@@ -61,29 +61,38 @@
                     </div>
                 </section>
 
-                <!--<section id="editor-nav" class="Landingpage-nav">
-                    <div class="Landingpage-nav-div">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="410" height="48" viewBox="0 0 260 48" fill="none">
+                <!-- <section id="editor-nav" style="display: block;">
+                    <div class="Landingpage-nav">
+                        <div class="Landingpage-nav-div">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="410" height="48" viewBox="0 0 260 48" fill="none">
 
-                            
-                            <polygon points="24,0 48,24 24,48 0,24" fill="#007BFF"/>
-                            <path d="M18 12 L10 24 L18 36" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
-                            <path d="M30 12 L38 24 L30 36" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
+                                
+                                <polygon points="24,0 48,24 24,48 0,24" fill="#007BFF"/>
+                                <path d="M18 12 L10 24 L18 36" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
+                                <path d="M30 12 L38 24 L30 36" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
 
-                                                    <text x="64" y="32" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="600">
-                            <tspan fill="#FFFFFF">Nombre</tspan>
-                            <tspan fill="#FFFFFF" dx="4">del</tspan>
-                            <tspan fill="#007BFF" dx="4">Proyecto</tspan>
-                            </text>
-                        </svg>
+                                <text x="64" y="32" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="600">
+                                <tspan fill="#FFFFFF">Nombre</tspan>
+                                <tspan fill="#FFFFFF" dx="4">del</tspan>
+                                <tspan fill="#007BFF" dx="4">Proyecto</tspan>
+                                </text>
+                            </svg>
+                        </div>
+                        <div class="seccion-derecha-navegacion">
+                                <Button><i id="icono-nube" class=" fa-chisel fa-regular fa-cloud"></i>Guardar</Button>
+                                <div class="btn-group">
+                                <button type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-bars"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li onclick="mostrarPerfil()"><a class="dropdown-item" href="#">Perfil</a></li>
+                                    <li onclick="mostrarPreferencias()"><a class="dropdown-item" href="#">Ajustes</a></li>
+                                    <li onclick="mostrarLandingPage()"><a class="dropdown-item" href="#">Cerrar sesion</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div class="Landingpage-nav-div">
-                        <ul>
-                            <li><Button><i id="icono-nube" class=" fa-chisel fa-regular fa-cloud"></i>Guardar</Button></li>
-                            <li><i class="fa-solid fa-bars"></i></li>
-                        </ul>
-                    </div>
-                </section>-->
+                </section> -->
             </nav>
         </header>
 
@@ -227,7 +236,7 @@
                         
                     </div>
                     <div class="seccion-derecha-navegacion">
-                        <button>
+                        <button onclick="renderizarEditorCodigo()">
                             <i class="fa-solid fa-plus"></i>
                             <div>Nuevo</div>
                         </button>
