@@ -47,6 +47,7 @@ const mostrarPantallaProyectos= () => {
   document.getElementById('seccion-proyectos').style.display = "block";
   document.getElementById('seccion-perfil').style.display = "none";
   document.getElementById('seccion-cuanta').style.display = "none";
+  document.getElementById('seccion-planes').style.display = "none";
   document.getElementById('seccion-preferencias').style.display = "none";
   
 }
@@ -57,6 +58,7 @@ const mostrarPerfil= () => {
   document.getElementById('seccion-proyectos').style.display = "none";
   document.getElementById('seccion-perfil').style.display = "block";
   document.getElementById('seccion-cuanta').style.display = "none";
+    document.getElementById('seccion-planes').style.display = "none";
   document.getElementById('seccion-preferencias').style.display = "none";
 }
 
@@ -66,6 +68,17 @@ const mostrarCuenta= () => {
   document.getElementById('seccion-proyectos').style.display = "none";
   document.getElementById('seccion-perfil').style.display = "none";
   document.getElementById('seccion-cuanta').style.display = "block";
+  document.getElementById('seccion-planes').style.display = "none";
+  document.getElementById('seccion-preferencias').style.display = "none";
+}
+
+const mostrarPlanes= () => {
+  document.getElementById('pantall-principal').style.display = "none";
+  document.getElementById('pantalla-administrativa').style.display = "block";
+  document.getElementById('seccion-proyectos').style.display = "none";
+  document.getElementById('seccion-perfil').style.display = "none";
+  document.getElementById('seccion-cuanta').style.display = "none";
+  document.getElementById('seccion-planes').style.display = "block";
   document.getElementById('seccion-preferencias').style.display = "none";
 }
 
@@ -75,6 +88,7 @@ const mostrarPreferencias= () => {
   document.getElementById('seccion-proyectos').style.display = "none";
   document.getElementById('seccion-perfil').style.display = "none";
   document.getElementById('seccion-cuanta').style.display = "none";
+  document.getElementById('seccion-planes').style.display = "none";
   document.getElementById('seccion-preferencias').style.display = "block";
 }
 
@@ -97,6 +111,7 @@ const mostrarLandingPage= () => {
   document.getElementById('seccion-proyectos').style.display = "none";
   document.getElementById('seccion-perfil').style.display = "none";
   document.getElementById('seccion-cuanta').style.display = "none";
+  document.getElementById('seccion-planes').style.display = "none";
   document.getElementById('seccion-preferencias').style.display = "block";
 }
 
@@ -109,6 +124,7 @@ const renderizarEditorCodigo = () => {
   document.getElementById('seccion-proyectos').style.display = "none";
   document.getElementById('seccion-perfil').style.display = "none";
   document.getElementById('seccion-cuanta').style.display = "none";
+  document.getElementById('seccion-planes').style.display = "none";
   document.getElementById('seccion-preferencias').style.display = "none";
   document.querySelector("nav").innerHTML = 
   `<section id="editor-nav" style="display: block;">

@@ -490,3 +490,78 @@ nav{
     height: 1.5rem;
     width: 1.5rem;
 }
+
+#seccion-planes{
+    height: 100%;
+    padding: 3rem 3rem 3rem 5rem;
+}
+
+.contenedor-planes{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+
+.plan{
+  width: 350px;
+  border: 1px solid whitesmoke;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 2px 4px rgba(0,0,0,0.2); 
+  margin: 20px;
+  font-weight: bold;
+  color:aliceblue;
+}
+
+#plan-free{
+    background-color: #628aff;
+}
+
+#plan-basic{
+    background-color: #1b52f7;
+}
+
+#plan-premium{
+    background-color:#2c2c55;
+}
+
+.plan-price{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.plan-price span{
+  margin: 5px;
+}
+
+.price-title {
+    font-size: 30px;
+    margin-bottom: 1px;
+}
+
+.plan-body{
+  padding: 16px;
+
+}
+
+.plan-body li{
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.plan-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.plan button{
+    width: 80%;
+    background-color: black;
+    border: #dcdcdc;
+}
