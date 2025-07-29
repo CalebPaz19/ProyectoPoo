@@ -41,7 +41,7 @@ nav{
     align-items: center;
     font-size: 1rem;
     width: 100%;
-    height: 100%;
+    height: 8vh;
 
 }
 
@@ -50,6 +50,7 @@ nav{
     align-items: center;
     justify-content: center;
     padding: 1rem 2rem;
+    overflow-x: hidden;
 }
 
 #ul-landigPage{
