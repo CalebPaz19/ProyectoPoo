@@ -199,6 +199,3 @@ const renderizarEditorCodigo = () => {
 
         </section>`;
 };
-
-// loginModal.style.display = 'none';
-// singUpModal.style.display = 'none';
