@@ -206,18 +206,22 @@ nav{
     background-color: white;
     border: solid black;
 }
-
+/* 
 .editor-texto{
     height: 100%;
     width: 100%;
     padding: 1rem;
-    /*cursor: pointer;*/
     overflow-y: auto; /* muestra scroll vertical si se excede */
-    overflow-x: auto; /* opcional, para scroll horizontal */
-    box-sizing: border-box; /* muy importante para evitar desborde */
+   /* overflow-x: auto; /* opcional, para scroll horizontal */
+    /*box-sizing: border-box; /* muy importante para evitar desborde */
+/*}
+ */
+/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+.CodeMirror {
+    height: 100%;
 }
 
-/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
 .modal-content{
     width: 25vw !important;
     font-family: "WDXL Lubrifont SC", sans-serif ;

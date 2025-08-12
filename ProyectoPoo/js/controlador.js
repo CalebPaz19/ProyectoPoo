@@ -168,7 +168,7 @@ const renderizarEditorCodigo = () => {
                                 <span>HTML</span>
                             </div>
                             <div class="contenedor-codigo">
-                                <div id="editor-html" class="editor-texto" contenteditable="true"></div>
+                                <textarea id="editor-html"></textarea>
                             </div>
                         </section>
                     </div>
@@ -178,7 +178,7 @@ const renderizarEditorCodigo = () => {
                                 <span>CSS</span>
                             </div>
                             <div class="contenedor-codigo">
-                                <div id="editor-css" class="editor-texto" contenteditable="true"></div>
+                                <textarea id="editor-css"></textarea>
                             </div>
                         </section>
                     </div>
@@ -188,7 +188,7 @@ const renderizarEditorCodigo = () => {
                                 <span>JAVASCRIPT</span>
                             </div>
                             <div class="contenedor-codigo">
-                                <div id="editor-js" class="editor-texto" contenteditable="true"></div>
+                                <textarea id="editor-js"></textarea>
                             </div>
                         </section>
                     </div>
@@ -199,3 +199,20 @@ const renderizarEditorCodigo = () => {
 
         </section>`;
 };
+
+window.addEventListener('DOMContentLoaded', () => {
+      CodeMirror.fromTextArea(document.getElementById('editor-html'), {
+        mode: 'htmlmixed',
+        lineNumbers: true,
+      });
+
+      CodeMirror.fromTextArea(document.getElementById('editor-css'), {
+        mode: 'css',
+        lineNumbers: true,
+      });
+
+      CodeMirror.fromTextArea(document.getElementById('editor-js'), {
+        mode: 'javascript',
+        lineNumbers: true,
+      });
+    });
