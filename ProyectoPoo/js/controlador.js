@@ -13,7 +13,13 @@ const abrirModal = (boton) => {
   }
 };
 
+const guardarPantallaActual = (pantalla) => {
+  localStorage.setItem("pantallaActual", pantalla);
+}
+
 const mostrarPantallaProyectos= () => {
+
+  guardarPantallaActual("proyectos");
   
   const loginModalEl = document.getElementById('login-modal');
   const signUpModalEl = document.getElementById('singUp-modal');
@@ -39,6 +45,8 @@ const mostrarPantallaProyectos= () => {
 }
 
 const mostrarPerfil= () => {
+  guardarPantallaActual("perfil");
+
   document.getElementById('pantall-principal').style.display = "none";
   document.getElementById('Landing-nav').style.display = "none";
   document.getElementById('Landing-page').style.display = "none";
@@ -53,6 +61,8 @@ const mostrarPerfil= () => {
 }
 
 const mostrarCuenta = () => {
+  guardarPantallaActual("cuenta");
+
   document.getElementById('pantall-principal').style.display = "none";
   document.getElementById('Landing-nav').style.display = "none";
   document.getElementById('Landing-page').style.display = "none";
@@ -67,6 +77,8 @@ const mostrarCuenta = () => {
 }
 
 const mostrarPlanes= () => {
+  guardarPantallaActual("planes");
+
   document.getElementById('pantall-principal').style.display = "none";
   document.getElementById('Landing-nav').style.display = "none";
   document.getElementById('Landing-page').style.display = "none";
@@ -81,6 +93,8 @@ const mostrarPlanes= () => {
 }
 
 const mostrarPreferencias= () => {
+  guardarPantallaActual("preferencias");
+
   document.getElementById('pantall-principal').style.display = "none";
   document.getElementById('Landing-nav').style.display = "none";
   document.getElementById('Landing-page').style.display = "none";
@@ -102,6 +116,8 @@ const mostrarPreferencias= () => {
 // }
 
 const mostrarLandingPage= () => {
+  guardarPantallaActual("landigPage");
+
   document.getElementById('pantall-principal').style.display = "block";
   document.getElementById('Landing-nav').style.display = "block";
   document.getElementById('Landing-page').style.display = "block";
@@ -118,6 +134,7 @@ const mostrarLandingPage= () => {
 
 
 const renderizarEditorCodigo = () => {
+  guardarPantallaActual("editor");
   
   document.getElementById('pantall-principal').style.display = "block";
   document.getElementById('Landing-nav').style.display = "none";
@@ -157,3 +174,29 @@ const crearEditores = () => {
   }
 };
 
+window.onload = () => {
+  const pantalla = localStorage.getItem("pantallaActual");
+  if (pantalla) {
+    switch (pantalla) {
+      case "proyectos":
+        mostrarPantallaProyectos();
+        break;
+      case "editor":
+        renderizarEditorCodigo();
+        break;
+      case "perfil":
+        mostrarPerfil();
+        break;
+      case "editor":
+        renderizarEditorCodigo();
+        break;
+      case "editor":
+        renderizarEditorCodigo();
+        break;
+      default:
+        mostrarLandingPage();
+    }
+  } else {
+    mostrarLandingPage(); // Por defecto
+  }
+};
