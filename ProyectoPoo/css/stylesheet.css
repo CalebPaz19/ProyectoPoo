@@ -14,7 +14,6 @@ body{
 
 main{
     background-color: #bcccfe;
-    height: 100vh;
 }
 
 /* footer{
@@ -33,6 +32,7 @@ nav{
     margin-top: initial;
     width: 100%;
     padding: 0.1rem 0.4rem;
+    z-index: 2000; 
 }
 .Landingpage-nav{
     display: flex;
@@ -62,6 +62,7 @@ nav{
     cursor: pointer;
     font-size: 1.5rem;
     margin: 0;
+    padding: 0 2rem;
 }
 
 .Landingpage-nav ul li:hover{
@@ -99,7 +100,7 @@ nav{
 
 /*///////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-#Landing-page{
+#contenedor-Landing-page{
     margin-top: 8vh;
     display: flex;
     flex-direction: row;
@@ -172,29 +173,26 @@ nav{
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-#editor-codigo{
+#contenedor-editor-codigo{
     margin-top: 8vh;
     padding: 1rem;
 }
 
 #contenedor-editores{
     margin-bottom: 24px;
-    }
+}
 
 .altura-editores{
     height: 50vh;
 }
 
-.altura-editores div span{
+.nombreEditores{
     background-color: white;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: bold;
     color: black;
-    padding: 0.3rem 2rem;
-    border-left: solid;
-    border-top: solid;
-    border-right: solid;
-    border-bottom: solid white;
+    padding: 0.2rem 1rem;
+    border: solid;
 }
 #resultado-codigo{
     height: 50vh;
@@ -206,16 +204,7 @@ nav{
     background-color: white;
     border: solid black;
 }
-/* 
-.editor-texto{
-    height: 100%;
-    width: 100%;
-    padding: 1rem;
-    overflow-y: auto; /* muestra scroll vertical si se excede */
-   /* overflow-x: auto; /* opcional, para scroll horizontal */
-    /*box-sizing: border-box; /* muy importante para evitar desborde */
-/*}
- */
+
 /*////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 .CodeMirror {

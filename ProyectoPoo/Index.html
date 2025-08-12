@@ -32,37 +32,39 @@
 
 </head>
 <body>
-    <section id="pantall-principal" style="display: 0">
+    <section id="pantall-principal" style="display: block">
         <header>
             <nav>
-                <section id="Landing-nav" class="Landingpage-nav" style="display: 0;">
-                    <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="310" height="48" viewBox="0 0 260 48" fill="none">
+                <section id="Landing-nav"  style="display: block;">
+                    <div class="Landingpage-nav">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="310" height="48" viewBox="0 0 260 48" fill="none">
 
-                            
-                            <polygon points="24,0 48,24 24,48 0,24" fill="#007BFF"/>
-                            <path d="M18 12 L10 24 L18 36" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
-                            <path d="M30 12 L38 24 L30 36" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
+                                
+                                <polygon points="24,0 48,24 24,48 0,24" fill="#007BFF"/>
+                                <path d="M18 12 L10 24 L18 36" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
+                                <path d="M30 12 L38 24 L30 36" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
 
-                            
-                            <text x="64" y="32" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="600">
-                            <tspan fill="#FFFFFF">Quick</tspan>
-                            <tspan fill="#FFFFFF" dx="4">Code</tspan>
-                            <tspan fill="#007BFF" dx="4">Maker</tspan>
-                            </text>
-                        </svg>
-                    </div>
-                    <div>
-                        <ul id="ul-landigPage">
-                            <li id="boton-formulario-iniciarSesion" onclick="abrirModal(this)">Log in</li>
-                            <li id="boton-formulario-registro" onclick="abrirModal(this)">Sing up</li>
-                            <li>About</li>
-                            <li>Contact</li>
-                        </ul>
+                                
+                                <text x="64" y="32" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="600">
+                                <tspan fill="#FFFFFF">Quick</tspan>
+                                <tspan fill="#FFFFFF" dx="4">Code</tspan>
+                                <tspan fill="#007BFF" dx="4">Maker</tspan>
+                                </text>
+                            </svg>
+                        </div>
+                        <div>
+                            <ul id="ul-landigPage">
+                                <li id="boton-formulario-iniciarSesion" onclick="abrirModal(this)">Log in</li>
+                                <li id="boton-formulario-registro" onclick="abrirModal(this)">Sing up</li>
+                                <li>About</li>
+                                <li>Contact</li>
+                            </ul>
+                        </div>
                     </div>
                 </section>
 
-                <!-- <section id="editor-nav" style="display: block;">
+                <section id="editor-nav" style="display: none;">
                     <div class="Landingpage-nav">
                         <div class="Landingpage-nav-div">
                             <svg xmlns="http://www.w3.org/2000/svg" width="410" height="48" viewBox="0 0 260 48" fill="none">
@@ -93,26 +95,27 @@
                             </div>
                         </div>
                     </div>
-                </section> -->
+                </section>
             </nav>
         </header>
-
         
         <main>
 
-            <section id="Landing-page" >
-                <section id="Landing-section1">
-                    <h1>Crea codigo HTML, CSS, <br>y JavaScript</h1>
-                    <h2>Genera y personaliza tu codigo web facil y rapido</h2>
-                        <div>
-                            <button id="btn-tryIt" onclick="renderizarEditorCodigo()">
-                                Try it
-                            </button>
-                        </div>    
-                </section>
-                <section id="Landing-section2">
-                    <img src="img/Imagen_landpage.gif" alt="Imagen">
-                </section>
+            <section id="Landing-page"  style="display: block;">
+                <div id="contenedor-Landing-page">
+                    <section id="Landing-section1">
+                        <h1>Crea codigo HTML, CSS, <br>y JavaScript</h1>
+                        <h2>Genera y personaliza tu codigo web facil y rapido</h2>
+                            <div>
+                                <button id="btn-tryIt" onclick="renderizarEditorCodigo()">
+                                    Try it
+                                </button>
+                            </div>    
+                    </section>
+                    <section id="Landing-section2">
+                        <img src="img/Imagen_landpage.gif" alt="Imagen">
+                    </section>
+                </div>
             </section>
 
             <div id="login-modal" class="modal" tabindex="-1">
@@ -179,6 +182,47 @@
                     </div>
                 </div>
             </div>
+
+            <section id="seccion-editor-codigo" style="display: none;">
+                <div id="contenedor-editor-codigo">
+                    <div id="contenedor-editores"  class="row">
+                        <div class="col">
+                            <section id="html" class="altura-editores">
+                                <div>
+                                    <span class="nombreEditores">HTML</span>
+                                </div>
+                                <div class="contenedor-codigo">
+                                    <textarea id="editor-html"></textarea>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col">
+                            <section id="css" class="altura-editores">
+                                <div>
+                                    <span class="nombreEditores">CSS</span>
+                                </div>
+                                <div class="contenedor-codigo">
+                                    <textarea id="editor-css"></textarea>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col">
+                            <section id="javascript" class="altura-editores">
+                                <div>
+                                    <span class="nombreEditores">JAVASCRIPT</span>
+                                </div>
+                                <div class="contenedor-codigo">
+                                    <textarea id="editor-js"></textarea>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div>
+                        <iframe id="resultado-codigo" src="" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </section>
+
         </main>
     </section>
     
@@ -227,7 +271,6 @@
                 </section>
             </div>
             <div class="contenedor-proyectos">
-                
                 <div class="seccion-barra-navgacion">
                     <div>
                         <div class="barra-busqueda">
