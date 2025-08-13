@@ -14,7 +14,7 @@ const abrirModal = (boton) => {
 };
 
 const guardarPantallaActual = (pantalla) => {
-  localStorage.setItem("pantallaActual", pantalla);
+  sessionStorage.setItem("pantallaActual", pantalla);
 }
 
 const mostrarPantallaProyectos= () => {
@@ -175,20 +175,23 @@ const crearEditores = () => {
 };
 
 window.onload = () => {
-  const pantalla = localStorage.getItem("pantallaActual");
+  const pantalla = sessionStorage.getItem("pantallaActual");
   if (pantalla) {
     switch (pantalla) {
       case "proyectos":
         mostrarPantallaProyectos();
         break;
-      case "editor":
-        renderizarEditorCodigo();
-        break;
       case "perfil":
         mostrarPerfil();
         break;
-      case "editor":
-        renderizarEditorCodigo();
+      case "cuenta":
+        mostrarCuenta();
+        break;
+      case "planes":
+        mostrarPlanes();
+        break;
+      case "preferencias":
+        mostrarPreferencias();
         break;
       case "editor":
         renderizarEditorCodigo();
