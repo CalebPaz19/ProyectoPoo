@@ -564,3 +564,16 @@ nav{
     background-color: black;
     border: #dcdcdc;
 }
+
+.error-message {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Espacio entre ícono y texto */
+}
+
+input.error {
+  border: 2px solid red !important;
+}
