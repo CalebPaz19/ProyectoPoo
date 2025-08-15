@@ -211,8 +211,20 @@ window.onload = () => {
 
 const registrarUsuarios = async() => {
   const nombre = document.getElementById('signUp-nombre').value.trim();
-  const email = document.getElementById('signUp-email').value.trim().toLowerCase();
+  const emailInput = document.getElementById('signUp-email');
+  const email = emailInput.value.trim().toLowerCase();
   const contraseña = document.getElementById('signUp-contraseña').value;
+
+  // Validación del formato del email con regex
+  const emailRegex = /^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/;
+  if (email && !emailRegex.test(email)) {
+    alert("Por favor ingrese un email válido");
+    emailInput.style.border = '2px solid red';
+    emailInput.focus();
+    return;
+  } else {
+    emailInput.style.border = '';
+  }
 
   try {
     const registrarUsuario = async() => {
@@ -224,7 +236,6 @@ const registrarUsuarios = async() => {
       };
       const respuestaRegistro = await fetch("http://localhost:8000/codeMaker/registro",requestOptions );
       const data = await respuestaRegistro.json().catch(() => ({}));
-;
 
       if (!respuestaRegistro.ok || !data.okk) {
         // Muestra el mensaje de error devuelto por la API
