@@ -65,9 +65,14 @@ nav{
     padding: 0 2rem;
 }
 
+#ul-landigPage li{
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+}
+
 .Landingpage-nav ul li:hover{
     color: cyan;
-    text-decoration: underline;
+    background-color: rgb(44, 42, 42);
 
 }
 

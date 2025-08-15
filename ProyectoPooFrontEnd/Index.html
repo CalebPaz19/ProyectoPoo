@@ -55,8 +55,8 @@
                         </div>
                         <div>
                             <ul id="ul-landigPage">
-                                <li id="boton-formulario-iniciarSesion" onclick="abrirModal(this)">Log in</li>
-                                <li id="boton-formulario-registro" onclick="abrirModal(this)">Sing up</li>
+                                <li id="boton-formulario-iniciarSesion" onclick="abrirModal(this)">Iniciar Sesion</li>
+                                <li id="boton-formulario-registro" onclick="abrirModal(this)">Registrarse</li>
                                 <li>About</li>
                                 <li>Contact</li>
                             </ul>
@@ -89,6 +89,7 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li onclick="mostrarPerfil()"><a class="dropdown-item" href="#">Perfil</a></li>
+                                    <li onclick="mostrarPantallaProyectos()"><a class="dropdown-item" href="#">Proyectos</a></li>
                                     <li onclick="mostrarPreferencias()"><a class="dropdown-item" href="#">Ajustes</a></li>
                                     <li onclick="mostrarLandingPage()"><a class="dropdown-item" href="#">Cerrar sesion</a></li>
                                 </ul>
@@ -137,12 +138,12 @@
                         </div>
                         <div class="modal-body">
                             <form class="formulario-iniciarSesion" action="">
-                                <label for="">Email</label>
-                                <input type="text">
+                                <label for="logIn-email">Email</label>
+                                <input type="email" id="logIn-email">
 
-                                <label for="">Contraseña</label>
-                                <input type="text">
-                                <div><button id="btn-iniciarSesion" type="button" onclick="mostrarPantallaProyectos()">Iniciar sesion</button></div>
+                                <label for="logIn-contraseña">Contraseña</label>
+                                <input type="password" id="logIn-contraseña">
+                                <div><button id="btn-iniciarSesion" type="button" onclick="iniciarSesion()">Iniciar sesion</button></div>
                             </form>
                         </div>
                     </div>
@@ -168,15 +169,15 @@
                         </div>
                         <div class="modal-body">
                             <form class="formulario-iniciarSesion" action="">
-                                <label for="nombre">Nombre</label>
-                                <input type="text" id="nombre" name="nombre">
+                                <label for="signUp-nombre">Nombre</label>
+                                <input type="text" id="signUp-nombre">
 
-                                <label for="email">Email</label>
-                                <input type="text" id="email" name="email">
+                                <label for="signUp-email">Email</label>
+                                <input type="email" id="signUp-email">
 
-                                <label for="contraseña">Contraseña</label>
-                                <input type="text" id="contraseña" name="contraseña">
-                                <div><button id="btn-registro" type="button" onclick="mostrarPantallaProyectos()">Registrarse</button></div>
+                                <label for="signUp-contraseña">Contraseña</label>
+                                <input type="password" id="signUp-contraseña" name="contraseña">
+                                <div><button id="btn-registro" type="button" onclick="registrarUsuarios()">Registrarse</button></div>
                             </form>
                         </div>
                     </div>

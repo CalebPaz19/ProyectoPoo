@@ -203,3 +203,82 @@ window.onload = () => {
     mostrarLandingPage(); // Por defecto
   }
 };
+
+const registrarUsuarios = async() => {
+  const nombre = document.getElementById('signUp-nombre').value.trim();
+  const email = document.getElementById('signUp-email').value.trim().toLowerCase();
+  const contraseña = document.getElementById('signUp-contraseña').value;
+
+  try {
+    const registrarUsuario = async() => {
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nombre, email, contraseña }),
+        redirect: "follow"
+      };
+      const respuestaRegistro = await fetch("http://localhost:8000/codeMaker/registro",requestOptions );
+      const data = await respuestaRegistro.json().catch(() => ({}));
+;
+
+      if (!respuestaRegistro.ok || !data.okk) {
+        // Muestra el mensaje de error devuelto por la API
+        alert(data.message || "No se pudo registrar");
+        return;
+      }
+      
+      // Éxito: cierra modal y manda a proyectos (o a editor si prefieres)
+      mostrarPantallaProyectos();
+      document.getElementById('signUp-nombre').value = "";
+      document.getElementById('signUp-email').value = "";
+      document.getElementById('signUp-contraseña').value = "";
+      alert("Registro exitoso, bienvenido");
+      }
+      registrarUsuario();
+
+  } catch (e) {
+    console.error(e);
+    alert("Error de red o servidor");
+  }
+}
+
+const iniciarSesion = async() => {
+  const email = document.getElementById('logIn-email').value.trim().toLowerCase();
+  const contraseña = document.getElementById('logIn-contraseña').value;
+
+  if (!email || !contraseña) {
+    alert("Email y contraseña son requeridos");
+    return;
+  }
+
+  try {
+    const buscarUsuario = async() => {
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, contraseña }),
+        redirect: "follow"
+      };
+      const respuestaInicioSesion = await fetch("http://localhost:8000/codeMaker/inicioSesion",requestOptions );
+      // Intenta parsear JSON aunque haya error 4xx/5xx
+      const data = await respuestaInicioSesion.json();
+
+      if (!respuestaInicioSesion.ok || data?.ok === false) {
+        alert(data?.message || `Error ${resp.status}: No se pudo iniciar sesión`);
+        return;
+      }
+      
+      // Éxito: cierra modal y manda a proyectos (o a editor si prefieres)
+      console.log(data);
+      alert("Inicio de sesión exitoso, bienvenido " + (data.Usuario?.nombre || data.Usuario?.email || ""));
+      mostrarPantallaProyectos();
+      document.getElementById('logIn-email').value = "";
+      document.getElementById('logIn-contraseña').value = "";
+    }
+    buscarUsuario();
+
+  } catch (e) {
+    console.error(e);
+    alert("Error de red o servidor");
+  }
+}
