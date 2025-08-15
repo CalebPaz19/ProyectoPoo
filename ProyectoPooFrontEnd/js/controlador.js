@@ -129,6 +129,11 @@ const mostrarLandingPage= () => {
   document.getElementById('seccion-cuanta').style.display = "none";
   document.getElementById('seccion-planes').style.display = "none";
   document.getElementById('seccion-preferencias').style.display = "none";
+  
+  if(sessionStorage.getItem("idUsuarioactual")){
+    sessionStorage.setItem("idUsuarioactual", "");
+
+  }
 }
 
 
@@ -270,16 +275,20 @@ const iniciarSesion = async () => {
       const respuestaInicioSesion = await fetch("http://localhost:8000/codeMaker/inicioSesion", requestOptions);
       // Intenta parsear JSON aunque haya error 4xx/5xx
       const data = await respuestaInicioSesion.json();
+      
 
       if (!respuestaInicioSesion.ok || data?.ok === false) {
         alert(data?.message || `Error ${respuestaInicioSesion.status}: No se pudo iniciar sesión`);
         return;
       }
+
+      sessionStorage.setItem("idUsuarioactual", data.Usuario._id);
       
       // Éxito: cierra modal y manda a proyectos (o a editor si prefieres)
-      console.log(data);
+      //console.log(data);
       alert("Inicio de sesión exitoso, bienvenido " + (data.Usuario?.nombre || data.Usuario?.email || ""));
       mostrarPantallaProyectos();
+      await cargarProyectos(data.Usuario._id);
       document.getElementById('logIn-email').value = "";
       document.getElementById('logIn-contraseña').value = "";
     }
@@ -290,3 +299,91 @@ const iniciarSesion = async () => {
     alert("Error de red o servidor");
   }
 }
+
+const crearNuevoProyecto = async() => {
+  const nombre = prompt("Nombre del proyecto:");
+  if (!nombre || !nombre.trim()) return;
+  
+  // reemplaza por el id real del usuario logueado
+  const idPropietario = sessionStorage.getItem("idUsuarioactual");
+  if (!idPropietario) {
+    alert("Primero inicia sesión para crear proyectos");
+    return;
+  }
+
+  try {
+
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ idPropietario, nombre }),
+      redirect: "follow"
+    }
+
+    const respuestaNuevoProyecto = await fetch("http://localhost:8000/codeMaker/proyectos", requestOptions);
+    const data = await respuestaNuevoProyecto.json().catch(() => ({}));
+
+    if (!respuestaNuevoProyecto.ok || !data.ok) {
+      alert(data.message || `Error ${respuestaNuevoProyecto.status}: No se pudo crear el proyecto`);
+      return;
+    }
+
+    const proyecto = data.proyecto;
+    // Guarda el proyecto actual y navega al editor
+    localStorage.setItem("currentProjectId", proyecto._id);
+    localStorage.setItem("currentProjectnombre", proyecto.nombre);
+
+    // Si quieres, refresca la lista de tarjetas:
+    //await cargarProyectos(idPropietario);
+
+    // Abre el editor
+    renderizarEditorCodigo();
+
+  } catch (e) {
+    console.error(e);
+    alert("Error de red o servidor");
+  }
+}
+
+const cargarProyectos = async(idPropietario) => {
+  try {
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow"
+    }
+    const respuestaCargarProyectos = await fetch(`http://localhost:8000/codeMaker/proyectos/${idPropietario}`, requestOptions);
+    const data = await respuestaCargarProyectos.json().catch(() => ({}));
+    
+    if (!respuestaCargarProyectos.ok || !data.ok) {
+      alert(data.message || "No se pudieron cargar los proyectos");
+      return;
+    }
+    console.log(data.proyectos.nombre)
+    const cont = document.getElementById("contenedor-cards");
+    cont.innerHTML = ""; // limpia
+    
+    data.proyectos.forEach(p => {
+      cont.innerHTML +=
+      `<div class="card">
+          <div>
+              <img src="img/img_referencia.webp" class="card-img-top" alt="...">
+          </div>
+
+          <div class="card-body">
+              <h5 class="card-title">${data.proyectos.nombre}</h5>
+              <button class="btn btn-danger">Eliminar</button>
+          </div>
+      </div>`  
+    });
+  } catch (e) {
+    console.error(e);
+    alert("Error de red o servidor");
+  }
+}
+
+// function abrirProyecto(id, name) {
+//   localStorage.setItem("currentProjectId", id);
+//   localStorage.setItem("currentProjectName", name);
+//   renderizarEditorCodigo();
+// }
+

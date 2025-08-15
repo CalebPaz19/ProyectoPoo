@@ -15,5 +15,5 @@ const esquemaUsuario = new Schema({
 }, { timestamps: true });
 
 
-export type Usuario = InferSchemaType<typeof esquemaUsuario>;
-export default model("Usuario", esquemaUsuario);
+export type Usuarios = InferSchemaType<typeof esquemaUsuario>;
+export default model("Usuarios", esquemaUsuario);

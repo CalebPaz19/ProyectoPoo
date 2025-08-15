@@ -16,8 +16,8 @@ export const registro = async(req: Request, res: Response) => {
             return res.status(400).json({ ok: false, message: "contraseña requerida" });
         }
         
-        const existing = await usuariosModel.findOne({ email });
-        if (existing) {
+        const existe = await usuariosModel.findOne({ email });
+        if (existe) {
             return res.status(409).json({ ok: false, message: "El email ya está registrado" });
         }
         const contraseñaHash = await bcrypt.hash(contraseña, 10);
