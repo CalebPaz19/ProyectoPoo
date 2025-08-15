@@ -242,29 +242,37 @@ const registrarUsuarios = async() => {
   }
 }
 
-const iniciarSesion = async() => {
+const iniciarSesion = async () => {
   const email = document.getElementById('logIn-email').value.trim().toLowerCase();
   const contraseña = document.getElementById('logIn-contraseña').value;
 
+  // Validación de campos vacíos
   if (!email || !contraseña) {
     alert("Email y contraseña son requeridos");
     return;
   }
 
+  // Validación del formato del email con regex
+  const emailRegex = /^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/;
+  if (!emailRegex.test(email)) {
+    alert("Por favor ingrese un email válido");
+    return;
+  }
+
   try {
-    const buscarUsuario = async() => {
+    const buscarUsuario = async () => {
       const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, contraseña }),
         redirect: "follow"
       };
-      const respuestaInicioSesion = await fetch("http://localhost:8000/codeMaker/inicioSesion",requestOptions );
+      const respuestaInicioSesion = await fetch("http://localhost:8000/codeMaker/inicioSesion", requestOptions);
       // Intenta parsear JSON aunque haya error 4xx/5xx
       const data = await respuestaInicioSesion.json();
 
       if (!respuestaInicioSesion.ok || data?.ok === false) {
-        alert(data?.message || `Error ${resp.status}: No se pudo iniciar sesión`);
+        alert(data?.message || `Error ${respuestaInicioSesion.status}: No se pudo iniciar sesión`);
         return;
       }
       
