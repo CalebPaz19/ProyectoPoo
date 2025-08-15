@@ -577,3 +577,89 @@ nav{
 input.error {
   border: 2px solid red !important;
 }
+
+/* Estilos generales para la modal de creación de proyecto */
+#crearProyectoModal .modal-content {
+    width: 25vw !important;
+    font-family: "WDXL Lubrifont SC", sans-serif;
+}
+
+#crearProyectoModal .modal-body, 
+#crearProyectoModal .modal-header {
+    background-color: #2c2c55;
+    color: #bcccfe;
+    border: 0 !important;
+    padding: 2rem 1rem !important;
+}
+
+#crearProyectoModal .modal-header {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 1rem 0rem 1rem !important;
+}
+
+/* Estilos específicos para el formulario de creación */
+#crearProyectoModal .formulario-iniciarSesion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#crearProyectoModal .formulario-iniciarSesion label {
+    margin-left: 10px;
+}
+
+#crearProyectoModal .formulario-iniciarSesion input {
+    background-color: #bcccfe;
+    border-radius: 15px;
+    border: solid;
+    margin-top: 3px;
+    padding: 0.5rem;
+    cursor: text;
+    width: 100%;
+}
+
+#crearProyectoModal .formulario-iniciarSesion input:focus {
+    border-color: cyan;
+    outline: none;
+}
+
+/* Contenedor de botones */
+.botones-crear-proyecto {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.botones-crear-proyecto > div {
+    flex: 1;
+}
+
+/* Estilos para los botones */
+.btn-crear-proyecto {
+    width: 100%;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+}
+
+.btn-crear-proyecto-cancelar {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-crear-proyecto-confirmar {
+    background-color: #007BFF;
+    color: white;
+}
+
+.btn-crear-proyecto-cancelar:hover {
+    background-color: #5a6268;
+}
+
+.btn-crear-proyecto-confirmar:hover {
+    background-color: #0069d9;
+}

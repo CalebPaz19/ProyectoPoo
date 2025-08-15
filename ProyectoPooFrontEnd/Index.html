@@ -140,9 +140,12 @@
                             <form class="formulario-iniciarSesion" action="">
                                 <label for="logIn-email">Email</label>
                                 <input type="email" id="logIn-email">
+                                <div id="logIn-email-error" class="error-message"></div>
 
                                 <label for="logIn-contraseña">Contraseña</label>
                                 <input type="password" id="logIn-contraseña">
+                                <div id="logIn-contraseña-error" class="error-message"></div>
+                                
                                 <div><button id="btn-iniciarSesion" type="button" onclick="iniciarSesion()">Iniciar sesion</button></div>
                             </form>
                         </div>
@@ -171,12 +174,17 @@
                             <form class="formulario-iniciarSesion" action="">
                                 <label for="signUp-nombre">Nombre</label>
                                 <input type="text" id="signUp-nombre">
+                                <div id="signUp-nombre-error" class="error-message"></div>
+
 
                                 <label for="signUp-email">Email</label>
                                 <input type="email" id="signUp-email">
+                                <div id="signUp-email-error" class="error-message"></div>
 
                                 <label for="signUp-contraseña">Contraseña</label>
                                 <input type="password" id="signUp-contraseña" name="contraseña">
+                                <div id="signUp-contraseña-error" class="error-message"></div>
+
                                 <div><button id="btn-registro" type="button" onclick="registrarUsuarios()">Registrarse</button></div>
                             </form>
                         </div>
@@ -232,7 +240,7 @@
 
             <div id="barra-lateral">
                 <section class="barra-lateral-header">
-                    <div>
+                    <div onclick="renderizarEditorCodigo()">
                         <svg xmlns="http://www.w3.org/2000/svg" width="180" height="48" viewBox="0 0 260 48" fill="none">
 
                             <polygon points="24,0 48,24 24,48 0,24" fill="#007BFF"/>
@@ -312,6 +320,48 @@
                         </div> -->
                     </div>
                 </section>
+
+                <!-- Modal para crear proyecto -->
+<div id="crearProyectoModal" class="modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="210" height="38" viewBox="0 0 260 48" fill="none">
+                    <polygon points="24,0 48,24 24,48 0,24" fill="#007BFF"/>
+                    <path d="M18 12 L10 24 L18 36" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
+                    <path d="M30 12 L38 24 L30 36" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
+                    <text x="64" y="32" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="600">
+                        <tspan fill="#FFFFFF">Nuevo Proyecto</tspan>
+                    </text>
+                </svg>
+            </div>
+            <div class="modal-body">
+                <form class="formulario-iniciarSesion" action="">
+                    <label for="nombreProyectoInput">Nombre del proyecto</label>
+                    <input type="text" id="nombreProyectoInput">
+                    <div id="nombreProyectoError" class="error-message"></div>
+                    
+                    <div class="botones-crear-proyecto">
+                        <div>
+                            <button type="button" 
+                                    class="btn-crear-proyecto btn-crear-proyecto-cancelar" 
+                                    data-bs-dismiss="modal">
+                                Cancelar
+                            </button>
+                        </div>
+                        <div>
+                            <button type="button" 
+                                    class="btn-crear-proyecto btn-crear-proyecto-confirmar" 
+                                    id="btnConfirmarCrearProyecto">
+                                Crear
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Seccion-Perfil -->
                 <section id="seccion-perfil" style="display: none;">
                     <div class="seccion-perfil-cuenta">

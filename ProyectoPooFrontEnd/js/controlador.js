@@ -210,10 +210,54 @@ window.onload = () => {
 };
 
 const registrarUsuarios = async() => {
-  const nombre = document.getElementById('signUp-nombre').value.trim();
-  const email = document.getElementById('signUp-email').value.trim().toLowerCase();
-  const contraseña = document.getElementById('signUp-contraseña').value;
+  // Obtener elementos del DOM (solo lo necesario para errores)
+  const nombreInput = document.getElementById('signUp-nombre');
+  const emailInput = document.getElementById('signUp-email');
+  const contraseñaInput = document.getElementById('signUp-contraseña');
+  const nombreError = document.getElementById('signUp-nombre-error');
+  const emailError = document.getElementById('signUp-email-error');
+  const contraseñaError = document.getElementById('signUp-contraseña-error');
 
+  // Limpiar errores previos
+  nombreError.innerHTML = '';
+  emailError.innerHTML = '';
+  contraseñaError.innerHTML = '';
+  nombreInput.classList.remove('input-error');
+  emailInput.classList.remove('input-error');
+  contraseñaInput.classList.remove('input-error');
+
+  // Valores originales (sin cambios)
+  const nombre = nombreInput.value.trim();
+  const email = emailInput.value.trim().toLowerCase();
+  const contraseña = contraseñaInput.value;
+
+  // Validación de campos vacíos (solo cambio en cómo se muestran errores)
+  if (!nombre || !email || !contraseña) {
+    if (!nombre) {
+      nombreError.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Nombre es requerido';
+      nombreInput.classList.add('input-error');
+    }
+    if (!email) {
+      emailError.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Email es requerido';
+      emailInput.classList.add('input-error');
+    }
+    if (!contraseña) {
+      contraseñaError.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Contraseña es requerida';
+      contraseñaInput.classList.add('input-error');
+    }
+    return;
+  }
+
+  // Validación del formato del email (solo cambio en cómo se muestra el error)
+  const emailRegex = /^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/;
+  if (!emailRegex.test(email)) {
+    emailError.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Por favor ingrese un email válido';
+    emailInput.classList.add('input-error');
+    emailInput.focus();
+    return;
+  }
+
+  // El resto de tu código permanece EXACTAMENTE igual
   try {
     const registrarUsuario = async() => {
       const requestOptions = {
@@ -224,43 +268,65 @@ const registrarUsuarios = async() => {
       };
       const respuestaRegistro = await fetch("http://localhost:8000/codeMaker/registro",requestOptions );
       const data = await respuestaRegistro.json().catch(() => ({}));
-;
 
       if (!respuestaRegistro.ok || !data.okk) {
-        // Muestra el mensaje de error devuelto por la API
-        alert(data.message || "No se pudo registrar");
+        // Cambio mínimo: Mostrar error en div en lugar de alert
+        emailError.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ${data.message || "No se pudo registrar"}`;
+        emailInput.classList.add('input-error');
         return;
       }
       
-      // Éxito: cierra modal y manda a proyectos (o a editor si prefieres)
+      // Éxito (sin cambios)
       mostrarPantallaProyectos();
       document.getElementById('signUp-nombre').value = "";
       document.getElementById('signUp-email').value = "";
       document.getElementById('signUp-contraseña').value = "";
       alert("Registro exitoso, bienvenido");
-      }
-      registrarUsuario();
+    }
+    registrarUsuario();
 
   } catch (e) {
     console.error(e);
-    alert("Error de red o servidor");
+    // Cambio mínimo: Mostrar error en div en lugar de alert
+    emailError.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Error de red o servidor';
+    emailInput.classList.add('input-error');
   }
 }
 
 const iniciarSesion = async () => {
-  const email = document.getElementById('logIn-email').value.trim().toLowerCase();
-  const contraseña = document.getElementById('logIn-contraseña').value;
+  const emailInput = document.getElementById('logIn-email');
+  const contraseñaInput = document.getElementById('logIn-contraseña');
+  const emailError = document.getElementById('logIn-email-error');
+  const contraseñaError = document.getElementById('logIn-contraseña-error'); 
 
-  // Validación de campos vacíos
+  // Limpiar errores previos
+  emailError.innerHTML = '';
+  contraseñaError.innerHTML = '';
+  emailInput.classList.remove('input-error');
+  contraseñaInput.classList.remove('input-error');
+
+  // Valores originales
+  const email = emailInput.value.trim().toLowerCase();
+  const contraseña = contraseñaInput.value;
+
   if (!email || !contraseña) {
-    alert("Email y contraseña son requeridos");
+    if (!email) {
+      emailError.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Email es requerido';
+      emailInput.classList.add('input-error');
+    }
+    if (!contraseña) {
+      contraseñaError.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Contraseña es requerida';
+      contraseñaInput.classList.add('input-error');
+    }
     return;
   }
 
-  // Validación del formato del email con regex
+  // Validación del formato del email
   const emailRegex = /^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/;
   if (!emailRegex.test(email)) {
-    alert("Por favor ingrese un email válido");
+    emailError.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Por favor ingrese un email válido';
+    emailInput.classList.add('input-error');
+    emailInput.focus();
     return;
   }
 
@@ -273,76 +339,122 @@ const iniciarSesion = async () => {
         redirect: "follow"
       };
       const respuestaInicioSesion = await fetch("http://localhost:8000/codeMaker/inicioSesion", requestOptions);
-      // Intenta parsear JSON aunque haya error 4xx/5xx
       const data = await respuestaInicioSesion.json();
       
 
       if (!respuestaInicioSesion.ok || data?.ok === false) {
-        alert(data?.message || `Error ${respuestaInicioSesion.status}: No se pudo iniciar sesión`);
+        // Cambio mínimo: Mostrar error en div en lugar de alert
+        emailError.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ${data?.message || `Error ${respuestaInicioSesion.status}: No se pudo iniciar sesión`}`;
+        emailInput.classList.add('input-error');
         return;
       }
 
       sessionStorage.setItem("idUsuarioactual", data.Usuario._id);
       
-      // Éxito: cierra modal y manda a proyectos (o a editor si prefieres)
-      //console.log(data);
+      // Éxito (sin cambios)
       alert("Inicio de sesión exitoso, bienvenido " + (data.Usuario?.nombre || data.Usuario?.email || ""));
       mostrarPantallaProyectos();
       await cargarProyectos(data.Usuario._id);
-      document.getElementById('logIn-email').value = "";
-      document.getElementById('logIn-contraseña').value = "";
+      emailInput.value = "";
+      contraseñaInput.value = "";
     }
     buscarUsuario();
 
   } catch (e) {
     console.error(e);
-    alert("Error de red o servidor");
+    // Cambio mínimo: Mostrar error en div en lugar de alert
+    emailError.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Error de red o servidor';
+    emailInput.classList.add('input-error');
   }
 }
 
 const crearNuevoProyecto = async() => {
-  const nombre = prompt("Nombre del proyecto:");
-  if (!nombre || !nombre.trim()) return;
+  const modal = new bootstrap.Modal(document.getElementById('crearProyectoModal'));
+  const nombreInput = document.getElementById('nombreProyectoInput');
+  const errorDiv = document.getElementById('nombreProyectoError');
   
-  // reemplaza por el id real del usuario logueado
-  const idPropietario = sessionStorage.getItem("idUsuarioactual");
-  if (!idPropietario) {
-    alert("Primero inicia sesión para crear proyectos");
-    return;
-  }
+  // Limpiar estado previo
+  nombreInput.value = '';
+  errorDiv.textContent = '';
+  nombreInput.classList.remove('input-error');
+  
+  // Mostrar modal y esperar respuesta
+  return new Promise((resolve) => {
+    // Función para manejar la respuesta
+    const handleResponse = async (nombre) => {
+      if (!nombre) return resolve();
+      
+      // Verificar sesión de usuario
+      const idPropietario = sessionStorage.getItem("idUsuarioactual");
+      if (!idPropietario) {
+        // Mostrar error en la modal
+        errorDiv.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Primero inicia sesión para crear proyectos';
+        nombreInput.classList.add('input-error');
+        modal.show(); // Volver a mostrar la modal
+        return resolve();
+      }
 
-  try {
+      try {
+        const requestOptions = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ idPropietario, nombre }),
+          redirect: "follow"
+        }
 
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ idPropietario, nombre }),
-      redirect: "follow"
-    }
+        const respuestaNuevoProyecto = await fetch("http://localhost:8000/codeMaker/proyectos", requestOptions);
+        const data = await respuestaNuevoProyecto.json().catch(() => ({}));
 
-    const respuestaNuevoProyecto = await fetch("http://localhost:8000/codeMaker/proyectos", requestOptions);
-    const data = await respuestaNuevoProyecto.json().catch(() => ({}));
+        if (!respuestaNuevoProyecto.ok || !data.ok) {
+          // Mostrar error del servidor en la modal
+          errorDiv.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ${data.message || `Error ${respuestaNuevoProyecto.status}: No se pudo crear el proyecto`}`;
+          nombreInput.classList.add('input-error');
+          modal.show(); // Volver a mostrar la modal
+          return resolve();
+        }
 
-    if (!respuestaNuevoProyecto.ok || !data.ok) {
-      alert(data.message || `Error ${respuestaNuevoProyecto.status}: No se pudo crear el proyecto`);
-      return;
-    }
+        const proyecto = data.proyecto;
+        localStorage.setItem("currentProjectId", proyecto._id);
+        localStorage.setItem("currentProjectnombre", proyecto.nombre);
 
-    const proyecto = data.proyecto;
-    // Guarda el proyecto actual y navega al editor
-    localStorage.setItem("currentProjectId", proyecto._id);
-    localStorage.setItem("currentProjectnombre", proyecto.nombre);
+        // Si quieres, refresca la lista de tarjetas:
+        //await cargarProyectos(idPropietario);
 
-    // Si quieres, refresca la lista de tarjetas:
-    //await cargarProyectos(idPropietario);
+        // Abre el editor
+        renderizarEditorCodigo();
 
-    // Abre el editor
-    renderizarEditorCodigo();
-
-  } catch (e) {
-    console.error(e);
-    alert("Error de red o servidor");
-  }
+      } catch (e) {
+        console.error(e);
+        // Mostrar error en la modal
+        errorDiv.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Error de red o servidor';
+        nombreInput.classList.add('input-error');
+        modal.show(); // Volver a mostrar la modal
+      } finally {
+        resolve();
+      }
+    };
+    
+    // Configurar evento del botón Crear
+    document.getElementById('btnConfirmarCrearProyecto').onclick = () => {
+      const nombre = nombreInput.value.trim();
+      
+      if (!nombre) {
+        errorDiv.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> El nombre del proyecto es requerido';
+        nombreInput.classList.add('input-error');
+        return;
+      }
+      
+      modal.hide();
+      handleResponse(nombre);
+    };
+    
+    // Configurar evento al cerrar modal
+    modal._element.addEventListener('hidden.bs.modal', () => {
+      handleResponse(null); 
+    });
+    
+    modal.show();
+  });
 }
 
 const cargarProyectos = async(idPropietario) => {
@@ -386,4 +498,3 @@ const cargarProyectos = async(idPropietario) => {
 //   localStorage.setItem("currentProjectName", name);
 //   renderizarEditorCodigo();
 // }
-
