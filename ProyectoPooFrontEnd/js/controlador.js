@@ -356,7 +356,7 @@ const iniciarSesion = async () => {
 
       if (!respuestaInicioSesion.ok || data?.ok === false) {
         // Cambio mínimo: Mostrar error en div en lugar de alert
-        emailError.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ${data?.message || `Error ${respuestaInicioSesion.status}: No se pudo iniciar sesión`}`;
+        contraseñaError.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ${data?.message || `Error ${respuestaInicioSesion.status}: No se pudo iniciar sesión`}`;
         emailInput.classList.add('input-error');
         return;
       }
