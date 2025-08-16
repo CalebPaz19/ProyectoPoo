@@ -25,7 +25,7 @@ const mostrarPantallaProyectos= () => {
   if (!idPropietario) {
     alert("Primero debes iniciar sesión para ver tus proyectos");
     mostrarLandingPage();
-    return; // 🚫 no sigas mostrando la sección proyectos
+    return; // no sigas mostrando la sección proyectos
   }
 
   // Si hay usuario, sí cargamos proyectos
