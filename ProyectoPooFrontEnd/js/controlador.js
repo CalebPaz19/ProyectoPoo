@@ -20,6 +20,16 @@ const guardarPantallaActual = (pantalla) => {
 const mostrarPantallaProyectos= () => {
 
   guardarPantallaActual("proyectos");
+  const idPropietario = sessionStorage.getItem("idUsuarioactual");
+
+  if (!idPropietario) {
+    alert("Primero debes iniciar sesión para ver tus proyectos");
+    mostrarLandingPage();
+    return; // 🚫 no sigas mostrando la sección proyectos
+  }
+
+  // Si hay usuario, sí cargamos proyectos
+  cargarProyectos(idPropietario);
   
   const loginModalEl = document.getElementById('login-modal');
   const signUpModalEl = document.getElementById('singUp-modal');
@@ -117,6 +127,8 @@ const mostrarPreferencias= () => {
 
 const mostrarLandingPage= () => {
   guardarPantallaActual("landigPage");
+  const cont = document.getElementById("contenedor-cards");
+  cont.innerHTML = ""; // limpia
 
   document.getElementById('pantall-principal').style.display = "block";
   document.getElementById('Landing-nav').style.display = "block";
@@ -414,11 +426,10 @@ const crearNuevoProyecto = async() => {
         }
 
         const proyecto = data.proyecto;
-        localStorage.setItem("currentProjectId", proyecto._id);
-        localStorage.setItem("currentProjectnombre", proyecto.nombre);
+        localStorage.setItem("proyectoActualtId", proyecto._id);
 
         // Si quieres, refresca la lista de tarjetas:
-        //await cargarProyectos(idPropietario);
+        await cargarProyectos(idPropietario);
 
         // Abre el editor
         renderizarEditorCodigo();
@@ -482,7 +493,7 @@ const cargarProyectos = async(idPropietario) => {
           </div>
 
           <div class="card-body">
-              <h5 class="card-title">${data.proyectos.nombre}</h5>
+              <h5 class="card-title">${p.nombre}</h5>
               <button class="btn btn-danger">Eliminar</button>
           </div>
       </div>`  

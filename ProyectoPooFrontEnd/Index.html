@@ -322,46 +322,42 @@
                 </section>
 
                 <!-- Modal para crear proyecto -->
-<div id="crearProyectoModal" class="modal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <svg xmlns="http://www.w3.org/2000/svg" width="210" height="38" viewBox="0 0 260 48" fill="none">
-                    <polygon points="24,0 48,24 24,48 0,24" fill="#007BFF"/>
-                    <path d="M18 12 L10 24 L18 36" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
-                    <path d="M30 12 L38 24 L30 36" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
-                    <text x="64" y="32" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="600">
-                        <tspan fill="#FFFFFF">Nuevo Proyecto</tspan>
-                    </text>
-                </svg>
-            </div>
-            <div class="modal-body">
-                <form class="formulario-iniciarSesion" action="">
-                    <label for="nombreProyectoInput">Nombre del proyecto</label>
-                    <input type="text" id="nombreProyectoInput">
-                    <div id="nombreProyectoError" class="error-message"></div>
-                    
-                    <div class="botones-crear-proyecto">
-                        <div>
-                            <button type="button" 
-                                    class="btn-crear-proyecto btn-crear-proyecto-cancelar" 
-                                    data-bs-dismiss="modal">
-                                Cancelar
-                            </button>
-                        </div>
-                        <div>
-                            <button type="button" 
-                                    class="btn-crear-proyecto btn-crear-proyecto-confirmar" 
-                                    id="btnConfirmarCrearProyecto">
-                                Crear
-                            </button>
+
+                <div id="crearProyectoModal" class="modal" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="210" height="38" viewBox="0 0 260 48" fill="none">
+                                    <polygon points="24,0 48,24 24,48 0,24" fill="#007BFF"/>
+                                    <path d="M18 12 L10 24 L18 36" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
+                                    <path d="M30 12 L38 24 L30 36" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
+                                    <text x="64" y="32" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="600">
+                                        <tspan fill="#FFFFFF">Nuevo Proyecto</tspan>
+                                    </text>
+                                </svg>
+                            </div>
+                            <div class="modal-body">
+                                <form class="formulario-iniciarSesion" action="">
+                                    <label for="nombreProyectoInput">Nombre del proyecto</label>
+                                    <input type="text" id="nombreProyectoInput">
+                                    <div id="nombreProyectoError" class="error-message"></div>
+                                    <div class="botones-crear-proyecto">
+                                        <div>
+                                            <button type="button" class="btn-crear-proyecto btn-crear-proyecto-cancelar" data-bs-dismiss="modal">
+                                                Cancelar
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <button type="button" class="btn-crear-proyecto btn-crear-proyecto-confirmar" id="btnConfirmarCrearProyecto">
+                                                Crear
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+                </div>
 <!-- Seccion-Perfil -->
                 <section id="seccion-perfil" style="display: none;">
                     <div class="seccion-perfil-cuenta">
