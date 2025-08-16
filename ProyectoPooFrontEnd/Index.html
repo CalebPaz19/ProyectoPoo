@@ -82,7 +82,7 @@
                             </svg>
                         </div>
                         <div class="seccion-derecha-navegacion">
-                                <Button><i id="icono-nube" class=" fa-chisel fa-regular fa-cloud"></i>Guardar</Button>
+                                <Button onclick="guardarCodigoProyectoActual()"><i id="icono-nube" class=" fa-chisel fa-regular fa-cloud" onclick="guardarCodigoProyectoActual()"></i>Guardar</Button>
                                 <div class="btn-group">
                                 <button type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fa-solid fa-bars"></i>
@@ -227,7 +227,7 @@
                         </div>
                     </div>
                     <div>
-                        <iframe id="resultado-codigo" src="" frameborder="0"></iframe>
+                        <iframe id="resultado-codigo" frameborder="0"  sandbox="allow-scripts"></iframe>
                     </div>
                 </div>
             </section>

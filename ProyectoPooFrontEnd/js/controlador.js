@@ -25,10 +25,9 @@ const mostrarPantallaProyectos= () => {
   if (!idPropietario) {
     alert("Primero debes iniciar sesión para ver tus proyectos");
     mostrarLandingPage();
-    return; // no sigas mostrando la sección proyectos
+    return;
   }
 
-  // Si hay usuario, sí cargamos proyectos
   cargarProyectos(idPropietario);
   
   const loginModalEl = document.getElementById('login-modal');
@@ -66,7 +65,7 @@ const mostrarPerfil= () => {
   document.getElementById('seccion-proyectos').style.display = "none";
   document.getElementById('seccion-perfil').style.display = "block";
   document.getElementById('seccion-cuanta').style.display = "none";
-    document.getElementById('seccion-planes').style.display = "none";
+  document.getElementById('seccion-planes').style.display = "none";
   document.getElementById('seccion-preferencias').style.display = "none";
 }
 
@@ -118,17 +117,10 @@ const mostrarPreferencias= () => {
   document.getElementById('seccion-preferencias').style.display = "block";
 }
 
-// const mostrarPlanes= () => {
-//   document.getElementById('seccion-proyectos').style.display = "none";
-//   document.getElementById('seccion-perfil').style.display = "none";
-//   document.getElementById('seccion-cuanta').style.display = "block";
-//   document.getElementById('seccion-preferencias').style.display = "none";
-// }
-
 const mostrarLandingPage= () => {
   guardarPantallaActual("landigPage");
   const cont = document.getElementById("contenedor-cards");
-  cont.innerHTML = ""; // limpia
+  cont.innerHTML = "";
 
   document.getElementById('pantall-principal').style.display = "block";
   document.getElementById('Landing-nav').style.display = "block";
@@ -144,8 +136,10 @@ const mostrarLandingPage= () => {
   
   if(sessionStorage.getItem("idUsuarioactual")){
     sessionStorage.setItem("idUsuarioactual", "");
-
   }
+  localStorage.removeItem("proyectoActualtId");
+
+  if (typeof resetEditors === "function") resetEditors();
 }
 
 
@@ -165,8 +159,17 @@ const renderizarEditorCodigo = () => {
   document.getElementById('seccion-planes').style.display = "none";
   document.getElementById('seccion-preferencias').style.display = "none";
   crearEditores();
+  conectarEventosPreview();
+  cargarCodigoProyectoActual().then(() => {
+  // refresca después de que el contenedor ya está visible
+  setTimeout(() => {
+      editorHTML?.refresh();
+      editorCSS?.refresh();
+      editorJS?.refresh();
+    }, 0);
+  });
   
-};
+}
 
 const crearEditores = () => {
   if (!editorHTML) {
@@ -190,6 +193,51 @@ const crearEditores = () => {
     });
   }
 };
+
+const frame = document.getElementById('resultado-codigo');
+let renderTimer;
+
+// Render con srcdoc (y pequeño debounce)
+const actualizarVistaEditor = () => {
+  clearTimeout(renderTimer);
+  renderTimer = setTimeout(() => {
+    const htmlCode = editorHTML?.getValue() ?? "";
+    const cssCode  = editorCSS?.getValue()  ?? "";
+    const jsCode   = editorJS?.getValue()   ?? "";
+
+    const safeJS = jsCode.replace(/<\/script>/gi, '<\\/script>');
+
+    frame.srcdoc = `<!doctype html>
+      <html>
+      <head>
+      <meta charset="utf-8">
+      <style>${cssCode}</style>
+      </head>
+      <body>
+      ${htmlCode}
+      <script>${safeJS}</script>
+      </body>
+      </html>`;
+        }, 80);
+};
+
+const  conectarEventosPreview = () => {
+  if (!editorHTML || !editorCSS || !editorJS) return;
+  // Evita doble suscripción: usa una marca en las instancias
+  if (!editorHTML._previewBound) {
+    editorHTML.on('change', actualizarVistaEditor);
+    editorHTML._previewBound = true;
+  }
+  if (!editorCSS._previewBound) {
+    editorCSS.on('change', actualizarVistaEditor);
+    editorCSS._previewBound = true;
+  }
+  if (!editorJS._previewBound) {
+    editorJS.on('change', actualizarVistaEditor);
+    editorJS._previewBound = true;
+  }
+}
+
 
 window.onload = () => {
   const pantalla = sessionStorage.getItem("pantallaActual");
@@ -243,7 +291,7 @@ const registrarUsuarios = async() => {
   const email = emailInput.value.trim().toLowerCase();
   const contraseña = contraseñaInput.value;
 
-  // Validación de campos vacíos (solo cambio en cómo se muestran errores)
+  // Validación de campos vacíos
   if (!nombre || !email || !contraseña) {
     if (!nombre) {
       nombreError.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Nombre es requerido';
@@ -260,7 +308,7 @@ const registrarUsuarios = async() => {
     return;
   }
 
-  // Validación del formato del email (solo cambio en cómo se muestra el error)
+  // Validación del formato del email
   const emailRegex = /^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/;
   if (!emailRegex.test(email)) {
     emailError.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Por favor ingrese un email válido';
@@ -269,7 +317,6 @@ const registrarUsuarios = async() => {
     return;
   }
 
-  // El resto de tu código permanece EXACTAMENTE igual
   try {
     const registrarUsuario = async() => {
       const requestOptions = {
@@ -281,14 +328,18 @@ const registrarUsuarios = async() => {
       const respuestaRegistro = await fetch("http://localhost:8000/codeMaker/registro",requestOptions );
       const data = await respuestaRegistro.json().catch(() => ({}));
 
-      if (!respuestaRegistro.ok || !data.okk) {
-        // Cambio mínimo: Mostrar error en div en lugar de alert
+      if (!respuestaRegistro.ok || !data.ok) {
         emailError.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ${data.message || "No se pudo registrar"}`;
         emailInput.classList.add('input-error');
         return;
       }
+
+      const userId = data.Usuario?._id;
+      if (userId) {
+      sessionStorage.setItem("idUsuarioactual", userId);
+    }
       
-      // Éxito (sin cambios)
+      // Éxito
       mostrarPantallaProyectos();
       document.getElementById('signUp-nombre').value = "";
       document.getElementById('signUp-email').value = "";
@@ -299,7 +350,6 @@ const registrarUsuarios = async() => {
 
   } catch (e) {
     console.error(e);
-    // Cambio mínimo: Mostrar error en div en lugar de alert
     emailError.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Error de red o servidor';
     emailInput.classList.add('input-error');
   }
@@ -355,7 +405,6 @@ const iniciarSesion = async () => {
       
 
       if (!respuestaInicioSesion.ok || data?.ok === false) {
-        // Cambio mínimo: Mostrar error en div en lugar de alert
         contraseñaError.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ${data?.message || `Error ${respuestaInicioSesion.status}: No se pudo iniciar sesión`}`;
         emailInput.classList.add('input-error');
         return;
@@ -363,8 +412,7 @@ const iniciarSesion = async () => {
 
       sessionStorage.setItem("idUsuarioactual", data.Usuario._id);
       
-      // Éxito (sin cambios)
-      alert("Inicio de sesión exitoso, bienvenido " + (data.Usuario?.nombre || data.Usuario?.email || ""));
+      // Éxito
       mostrarPantallaProyectos();
       await cargarProyectos(data.Usuario._id);
       emailInput.value = "";
@@ -374,7 +422,6 @@ const iniciarSesion = async () => {
 
   } catch (e) {
     console.error(e);
-    // Cambio mínimo: Mostrar error en div en lugar de alert
     emailError.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Error de red o servidor';
     emailInput.classList.add('input-error');
   }
@@ -481,20 +528,19 @@ const cargarProyectos = async(idPropietario) => {
       alert(data.message || "No se pudieron cargar los proyectos");
       return;
     }
-    console.log(data.proyectos.nombre)
     const cont = document.getElementById("contenedor-cards");
     cont.innerHTML = ""; // limpia
     
     data.proyectos.forEach(p => {
       cont.innerHTML +=
       `<div class="card">
-          <div>
+          <div onclick="abrirProyecto('${p._id}')">
               <img src="img/img_referencia.webp" class="card-img-top" alt="...">
           </div>
 
           <div class="card-body">
               <h5 class="card-title">${p.nombre}</h5>
-              <button class="btn btn-danger">Eliminar</button>
+              <button class="btn btn-danger" onclick="eliminarProyecto('${p._id}')">Eliminar</button>
           </div>
       </div>`  
     });
@@ -504,8 +550,90 @@ const cargarProyectos = async(idPropietario) => {
   }
 }
 
-// function abrirProyecto(id, name) {
-//   localStorage.setItem("currentProjectId", id);
-//   localStorage.setItem("currentProjectName", name);
-//   renderizarEditorCodigo();
-// }
+const abrirProyecto = (id) => {
+  localStorage.setItem("proyectoActualtId", id);
+  renderizarEditorCodigo();
+};
+
+const cargarCodigoProyectoActual = async() => {
+  const idProyecto = localStorage.getItem("proyectoActualtId");
+  
+  if (!idProyecto) return;
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow"
+    }
+
+  const respuesta = await fetch(`http://localhost:8000/codeMaker/codigos/${idProyecto}`, requestOptions);
+  const data = await respuesta.json().catch(() => ({}));
+
+  if (!respuesta.ok || !data.ok) return;
+
+  // Precarga en CodeMirror (asegúrate de que los editores están creados)
+  if (editorHTML) editorHTML.setValue(data.codigo.html || "");
+  if (editorCSS)  editorCSS.setValue(data.codigo.css || "");
+  if (editorJS)   editorJS.setValue(data.codigo.js || "");
+  actualizarVistaEditor();
+}
+
+const guardarCodigoProyectoActual = async() => {
+  const idProyecto = localStorage.getItem("proyectoActualtId");
+  if (!idProyecto) return;
+
+  const body = {
+    html: editorHTML ? editorHTML.getValue() : "",
+    css:  editorCSS  ? editorCSS.getValue()  : "",
+    js:   editorJS   ? editorJS.getValue()   : ""
+  };
+  const requestOptions = {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  }
+
+  const resp = await fetch(`http://localhost:8000/codeMaker/codigos/${idProyecto}`, requestOptions);
+
+  const data = await resp.json().catch(() => ({}));
+  if (!resp.ok || !data.ok) {
+    alert(data.message || "No se pudo guardar");
+    return;
+  }
+}
+
+const eliminarProyecto = async (idProyecto) => {
+  if (!confirm("¿Seguro que quieres eliminar este proyecto?")) return;
+
+  try {
+    const requestOptions = {
+      method: "DELETE",
+      redirect: "follow"
+    }
+    const resp = await fetch(`http://localhost:8000/codeMaker/proyectos/${idProyecto}`, requestOptions);
+    const data = await resp.json();
+
+    if (!resp.ok || data.ok === false) {
+      alert(data.message || "Error eliminando proyecto");
+      return;
+    }
+
+    alert("Proyecto eliminado");
+    // refrescar la lista de proyectos
+    mostrarPantallaProyectos();
+
+  } catch (e) {
+    console.error(e);
+    alert("Error de red o servidor");
+  }
+};
+
+const resetEditors = (clearPreview = true) => {
+  if (editorHTML) editorHTML.setValue("");
+  if (editorCSS)  editorCSS.setValue("");
+  if (editorJS)   editorJS.setValue("");
+  if (clearPreview) {
+    frame.srcdoc = "<!doctype html><html><head><meta charset='utf-8'></head><body></body></html>";
+  }
+};
+
+
+

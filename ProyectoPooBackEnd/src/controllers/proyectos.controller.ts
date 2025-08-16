@@ -68,3 +68,25 @@ export  const listarProyectos = async(req: Request, res: Response) => {
     return res.status(500).json({ ok: false, message: "Error interno" });
   }
 }
+
+export const eliminarProyecto = async (req: Request, res: Response) => {
+    try {
+        const { _id } = req.params;
+        // Verificar que exista el proyecto
+        const proyecto = await Proyectos.findById(_id);
+        
+        if (!proyecto) {
+            return res.status(404).json({ ok: false, message: "Proyecto no encontrado" });
+        }
+        
+        // Borrar el PaqueteCodigos asociado 
+        await PaqueteCodigos.deleteOne({ idProyecto: _id });
+        // Borrar el proyecto
+        await Proyectos.findByIdAndDelete(_id);
+
+        return res.json({ ok: true, message: "Proyecto eliminado correctamente" });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ ok: false, message: "Error eliminando proyecto" });
+  }
+};

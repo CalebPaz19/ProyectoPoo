@@ -1,7 +1,7 @@
 import { Schema, model, InferSchemaType } from "mongoose";
 
 const esquemaPaqueteCodigos = new Schema({
-  idProyecto: { type: Schema.Types.ObjectId, ref: "Proyecto", required: true, unique: true, index: true },
+  idProyecto: { type: Schema.Types.ObjectId, ref: "Proyectos", required: true, unique: true, index: true },
   html: { type: String, default: "" },
   css:  { type: String, default: "" },
   js:   { type: String, default: "" },
