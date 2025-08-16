@@ -79,6 +79,7 @@ export const inicioSesion = async(req: Request, res: Response) => {
             Usuario: {
                 _id: Usuario._id,
                 email: Usuario.email,
+                nombre: Usuario.nombre,
                 //role: Usuario.role,
                 preferencias: Usuario.preferencias,
                 createdAt: Usuario.createdAt

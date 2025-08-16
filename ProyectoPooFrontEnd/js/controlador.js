@@ -359,7 +359,9 @@ const iniciarSesion = async () => {
   const emailInput = document.getElementById('logIn-email');
   const contraseñaInput = document.getElementById('logIn-contraseña');
   const emailError = document.getElementById('logIn-email-error');
-  const contraseñaError = document.getElementById('logIn-contraseña-error'); 
+  const contraseñaError = document.getElementById('logIn-contraseña-error');
+  let nombrePerfil = document.getElementById('nombre-perfil');
+  let correoPerfil = document.getElementById("correo-perfil");
 
   // Limpiar errores previos
   emailError.innerHTML = '';
@@ -414,6 +416,11 @@ const iniciarSesion = async () => {
       
       // Éxito
       mostrarPantallaProyectos();
+
+      nombrePerfil.innerHTML = `Nombre: ${data.Usuario.nombre}`;
+      correoPerfil.innerHTML = `Correo: ${data.Usuario.email}`
+
+
       await cargarProyectos(data.Usuario._id);
       emailInput.value = "";
       contraseñaInput.value = "";
